@@ -17,7 +17,7 @@ async function bootstrap() {
 
   await app.listen(port);
 
-  Logger.log(`🚀 Application is running on: http://localhost:${port}`);
+  Logger.log(`🚀 Application is running on: http://localhost:${port}/graphql`);
   Logger.log(`Running in ${config.get<string>('app.env')} mode`);
 }
 

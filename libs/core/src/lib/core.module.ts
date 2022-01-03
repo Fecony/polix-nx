@@ -4,6 +4,10 @@ import authConfig from './config/auth.config';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { validationSchema } from './config/validation';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
+import { CoreResolver } from './core.resolver';
+import { SchemaMetaFieldDef } from 'graphql';
 
 @Module({
   imports: [
@@ -16,9 +20,13 @@ import { validationSchema } from './config/validation';
         abortEarly: true,
       },
     }),
+    GraphQLModule.forRoot({
+      sortSchema: true,
+      autoSchemaFile: 'graphql/schema.gql',
+    }),
   ],
   controllers: [],
-  providers: [],
+  providers: [CoreResolver],
   exports: [],
 })
 export class CoreModule {}
