@@ -5,9 +5,7 @@ import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { validationSchema } from './config/validation';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
 import { CoreResolver } from './core.resolver';
-import { SchemaMetaFieldDef } from 'graphql';
 
 @Module({
   imports: [
