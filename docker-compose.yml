@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - '${DB_PORT:-3306}:3306'
+    expose:
+      - '${DB_PORT:-3306}'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - 'polixmysql:/var/lib/mysql'
+    networks:
+      - polix
+
+networks:
+  polix:
+    driver: bridge
+
+volumes:
+  polixmysql:
+    driver: local
