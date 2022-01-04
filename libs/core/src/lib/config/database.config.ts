@@ -8,4 +8,5 @@ export default registerAs('database', () => ({
   name: env('DB_DATABASE'),
   username: env('DB_USERNAME'),
   password: env('DB_PASSWORD'),
+  url: env('DB_URL'),
 }));
