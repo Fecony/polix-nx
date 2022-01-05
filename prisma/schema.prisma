@@ -9,3 +9,117 @@ datasource db {
   provider = "mysql"
   url      = env("DB_URL")
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String?  @unique
+  email     String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  SocialAccount SocialAccount[]
+  reports       Report[]
+  @@map("users")
+}
+
+model SocialAccount {
+  id         Int      @id @default(autoincrement())
+  provider   BigInt
+  providerId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("social_accounts")
+}
+
+model Country {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  region Region[]
+  @@map("countries")
+}
+
+model Region {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  country   Country  @relation(fields: [countryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  countryId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  city City[]
+  @@map("regions")
+}
+
+model City {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  region    Region   @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  regionId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reports Report[]
+  @@map("cities")
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reports Report[]
+  @@map("tags")
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  location Unsupported("Point")?
+
+  user   User? @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: SetNull)
+  userId Int?
+  city   City? @relation(fields: [cityId], references: [id], onDelete: SetNull, onUpdate: SetNull)
+  cityId Int?
+
+  tags  Tag[]
+  media ReportMedia[]
+  @@map("reports")
+}
+
+model Media {
+  id        Int      @id @default(autoincrement())
+  path      String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reportMedia ReportMedia[]
+  @@map("media")
+}
+
+model ReportMedia {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  report   Report @relation(fields: [reportId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  reportId Int
+  media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  mediaId  Int
+
+  @@map("report_media")
+}
