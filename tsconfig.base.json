@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@polix/core": ["libs/core/src/index.ts"],
-      "@polix/prisma": ["libs/prisma/src/index.ts"]
+      "@polix/prisma": ["libs/prisma/src/index.ts"],
+      "@polix/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

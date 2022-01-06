@@ -6,6 +6,7 @@ import databaseConfig from './config/database.config';
 import { validationSchema } from './config/validation';
 import { GraphQLModule } from '@nestjs/graphql';
 import { CoreResolver } from './core.resolver';
+import { isEnv } from '@polix/shared/utils';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { CoreResolver } from './core.resolver';
     }),
     GraphQLModule.forRoot({
       sortSchema: true,
-      autoSchemaFile: 'graphql/schema.gql',
+      autoSchemaFile: isEnv('production') ? true : 'graphql/schema.gql',
     }),
   ],
   controllers: [],

@@ -22,6 +22,7 @@
     "apollo-server-express": "^3.6.1",
     "graphql": "^15",
     "graphql-tools": "^8.2.0",
+    "helmet": "^5.0.1",
     "joi": "^17.5.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",

@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "core": "libs/core",
-    "prisma": "libs/prisma"
+    "prisma": "libs/prisma",
+    "shared-utils": "libs/shared/utils"
   }
 }

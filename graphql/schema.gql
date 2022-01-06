@@ -2,6 +2,307 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CityAvgAggregate {
+  id: Float
+  regionId: Float
+}
+
+type CityCount {
+  reports: Int!
+}
+
+type CityCountAggregate {
+  _all: Int!
+  id: Int!
+  name: Int!
+  regionId: Int!
+}
+
+type CityMaxAggregate {
+  id: Int
+  name: String
+  regionId: Int
+}
+
+type CityMinAggregate {
+  id: Int
+  name: String
+  regionId: Int
+}
+
+type CitySumAggregate {
+  id: Int
+  regionId: Int
+}
+
+type CountryAvgAggregate {
+  id: Float
+}
+
+type CountryCount {
+  region: Int!
+}
+
+type CountryCountAggregate {
+  _all: Int!
+  code: Int!
+  id: Int!
+  name: Int!
+}
+
+type CountryMaxAggregate {
+  code: String
+  id: Int
+  name: String
+}
+
+type CountryMinAggregate {
+  code: String
+  id: Int
+  name: String
+}
+
+type CountrySumAggregate {
+  id: Int
+}
+
+type MediaAvgAggregate {
+  id: Float
+}
+
+type MediaCount {
+  reportMedia: Int!
+}
+
+type MediaCountAggregate {
+  _all: Int!
+  id: Int!
+  name: Int!
+  path: Int!
+}
+
+type MediaMaxAggregate {
+  id: Int
+  name: String
+  path: String
+}
+
+type MediaMinAggregate {
+  id: Int
+  name: String
+  path: String
+}
+
+type MediaSumAggregate {
+  id: Int
+}
+
 type Query {
   ping: String!
+}
+
+type RegionAvgAggregate {
+  countryId: Float
+  id: Float
+}
+
+type RegionCount {
+  city: Int!
+}
+
+type RegionCountAggregate {
+  _all: Int!
+  countryId: Int!
+  id: Int!
+  name: Int!
+}
+
+type RegionMaxAggregate {
+  countryId: Int
+  id: Int
+  name: String
+}
+
+type RegionMinAggregate {
+  countryId: Int
+  id: Int
+  name: String
+}
+
+type RegionSumAggregate {
+  countryId: Int
+  id: Int
+}
+
+type ReportAvgAggregate {
+  cityId: Float
+  id: Float
+  userId: Float
+}
+
+type ReportCount {
+  media: Int!
+  tags: Int!
+}
+
+type ReportCountAggregate {
+  _all: Int!
+  cityId: Int!
+  content: Int!
+  id: Int!
+  title: Int!
+  userId: Int!
+}
+
+type ReportMaxAggregate {
+  cityId: Int
+  content: String
+  id: Int
+  title: String
+  userId: Int
+}
+
+type ReportMediaAvgAggregate {
+  id: Float
+  mediaId: Float
+  reportId: Float
+}
+
+type ReportMediaCountAggregate {
+  _all: Int!
+  id: Int!
+  mediaId: Int!
+  reportId: Int!
+}
+
+type ReportMediaMaxAggregate {
+  id: Int
+  mediaId: Int
+  reportId: Int
+}
+
+type ReportMediaMinAggregate {
+  id: Int
+  mediaId: Int
+  reportId: Int
+}
+
+type ReportMediaSumAggregate {
+  id: Int
+  mediaId: Int
+  reportId: Int
+}
+
+type ReportMinAggregate {
+  cityId: Int
+  content: String
+  id: Int
+  title: String
+  userId: Int
+}
+
+type ReportSumAggregate {
+  cityId: Int
+  id: Int
+  userId: Int
+}
+
+type SocialAccountAvgAggregate {
+  id: Float
+  provider: Float
+  userId: Float
+}
+
+type SocialAccountCountAggregate {
+  _all: Int!
+  id: Int!
+  provider: Int!
+  providerId: Int!
+  userId: Int!
+}
+
+type SocialAccountMaxAggregate {
+  id: Int
+  provider: String
+  providerId: String
+  userId: Int
+}
+
+type SocialAccountMinAggregate {
+  id: Int
+  provider: String
+  providerId: String
+  userId: Int
+}
+
+type SocialAccountSumAggregate {
+  id: Int
+  provider: String
+  userId: Int
+}
+
+type TagAvgAggregate {
+  id: Float
+}
+
+type TagCount {
+  reports: Int!
+}
+
+type TagCountAggregate {
+  _all: Int!
+  id: Int!
+  name: Int!
+  slug: Int!
+}
+
+type TagMaxAggregate {
+  id: Int
+  name: String
+  slug: String
+}
+
+type TagMinAggregate {
+  id: Int
+  name: String
+  slug: String
+}
+
+type TagSumAggregate {
+  id: Int
+}
+
+type UserAvgAggregate {
+  id: Float
+}
+
+type UserCount {
+  SocialAccount: Int!
+  reports: Int!
+}
+
+type UserCountAggregate {
+  _all: Int!
+  email: Int!
+  id: Int!
+  password: Int!
+  username: Int!
+}
+
+type UserMaxAggregate {
+  email: String
+  id: Int
+  password: String
+  username: String
+}
+
+type UserMinAggregate {
+  email: String
+  id: Int
+  password: String
+  username: String
+}
+
+type UserSumAggregate {
+  id: Int
 }
