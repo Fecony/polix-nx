@@ -7,9 +7,11 @@ generator client {
 
 generator nestgraphql {
   provider               = "node node_modules/prisma-nestjs-graphql"
-  output                 = "../libs/prisma/src/@generated/prisma-nestjs-graphql"
+  output                 = "../libs/prisma/src/@generated"
   fields_Validator_from  = "class-validator"
   fields_Validator_input = true
+  emitSingle             = true
+  purgeOutput            = true
 }
 
 datasource db {
