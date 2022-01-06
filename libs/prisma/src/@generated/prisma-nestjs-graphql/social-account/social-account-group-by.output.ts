@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { SocialAccountCountAggregate } from './social-account-count-aggregate.output';
 import { SocialAccountAvgAggregate } from './social-account-avg-aggregate.output';
 import { SocialAccountSumAggregate } from './social-account-sum-aggregate.output';
@@ -22,10 +23,10 @@ export class SocialAccountGroupBy {
     @Field(() => Int, {nullable:false})
     userId!: number;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => SocialAccountCountAggregate, {nullable:true})

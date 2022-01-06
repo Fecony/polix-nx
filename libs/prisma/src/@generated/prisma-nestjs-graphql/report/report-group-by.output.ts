@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { ReportCountAggregate } from './report-count-aggregate.output';
 import { ReportAvgAggregate } from './report-avg-aggregate.output';
 import { ReportSumAggregate } from './report-sum-aggregate.output';
@@ -19,10 +20,10 @@ export class ReportGroupBy {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => Int, {nullable:true})

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { Report } from '../report/report.model';
 import { TagCount } from './tag-count.output';
 
@@ -16,13 +17,13 @@ export class Tag {
     @Field(() => String, {nullable:false})
     slug!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date;
 
-    @Field(() => [Report], {nullable:true})
+    @HideField()
     reports?: Array<Report>;
 
     @Field(() => TagCount, {nullable:false})

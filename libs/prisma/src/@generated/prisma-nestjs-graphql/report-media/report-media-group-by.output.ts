@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { ReportMediaCountAggregate } from './report-media-count-aggregate.output';
 import { ReportMediaAvgAggregate } from './report-media-avg-aggregate.output';
 import { ReportMediaSumAggregate } from './report-media-sum-aggregate.output';
@@ -13,10 +14,10 @@ export class ReportMediaGroupBy {
     @Field(() => Int, {nullable:false})
     id!: number;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => Int, {nullable:false})

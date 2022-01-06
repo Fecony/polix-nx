@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { CityCountAggregate } from './city-count-aggregate.output';
 import { CityAvgAggregate } from './city-avg-aggregate.output';
 import { CitySumAggregate } from './city-sum-aggregate.output';
@@ -19,10 +20,10 @@ export class CityGroupBy {
     @Field(() => Int, {nullable:false})
     regionId!: number;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => CityCountAggregate, {nullable:true})

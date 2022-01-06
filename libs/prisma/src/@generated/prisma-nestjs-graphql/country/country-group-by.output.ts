@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { CountryCountAggregate } from './country-count-aggregate.output';
 import { CountryAvgAggregate } from './country-avg-aggregate.output';
 import { CountrySumAggregate } from './country-sum-aggregate.output';
@@ -19,10 +20,10 @@ export class CountryGroupBy {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => CountryCountAggregate, {nullable:true})

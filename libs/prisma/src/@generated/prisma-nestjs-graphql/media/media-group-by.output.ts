@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { MediaCountAggregate } from './media-count-aggregate.output';
 import { MediaAvgAggregate } from './media-avg-aggregate.output';
 import { MediaSumAggregate } from './media-sum-aggregate.output';
@@ -19,10 +20,10 @@ export class MediaGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => MediaCountAggregate, {nullable:true})

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { ReportMedia } from '../report-media/report-media.model';
 import { MediaCount } from './media-count.output';
 
@@ -16,13 +17,13 @@ export class Media {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date;
 
-    @Field(() => [ReportMedia], {nullable:true})
+    @HideField()
     reportMedia?: Array<ReportMedia>;
 
     @Field(() => MediaCount, {nullable:false})

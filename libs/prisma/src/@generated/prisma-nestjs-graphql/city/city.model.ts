@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Region } from '../region/region.model';
+import { HideField } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Report } from '../report/report.model';
 import { CityCount } from './city-count.output';
@@ -15,19 +16,19 @@ export class City {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Region, {nullable:false})
+    @HideField()
     region?: Region;
 
     @Field(() => Int, {nullable:false})
     regionId!: number;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date;
 
-    @Field(() => [Report], {nullable:true})
+    @HideField()
     reports?: Array<Report>;
 
     @Field(() => CityCount, {nullable:false})

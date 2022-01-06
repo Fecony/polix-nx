@@ -18,15 +18,19 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String?  @unique
-  email     String   @unique
-  password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            Int             @id @default(autoincrement())
+  username      String?         @unique
+  email         String          @unique
+  password      String?
+  /// @HideField()
+  createdAt     DateTime        @default(now())
+  /// @HideField()
+  updatedAt     DateTime        @updatedAt
+  /// @HideField()
   SocialAccount SocialAccount[]
+  /// @HideField()
   reports       Report[]
+
   @@map("users")
 }
 
@@ -34,9 +38,12 @@ model SocialAccount {
   id         Int      @id @default(autoincrement())
   provider   BigInt
   providerId String
+  /// @HideField()
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId     Int
+  /// @HideField()
   createdAt  DateTime @default(now())
+  /// @HideField()
   updatedAt  DateTime @updatedAt
 
   @@map("social_accounts")
@@ -46,9 +53,12 @@ model Country {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   code      String   @unique
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   region Region[]
   @@map("countries")
 }
@@ -56,11 +66,15 @@ model Country {
 model Region {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  /// @HideField()
   country   Country  @relation(fields: [countryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   countryId Int
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   city City[]
   @@map("regions")
 }
@@ -68,11 +82,15 @@ model Region {
 model City {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  /// @HideField()
   region    Region   @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   regionId  Int
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   reports Report[]
   @@map("cities")
 }
@@ -81,9 +99,12 @@ model Tag {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   slug      String   @unique
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   reports Report[]
   @@map("tags")
 }
@@ -92,17 +113,22 @@ model Report {
   id        Int      @id @default(autoincrement())
   title     String
   content   String   @db.Text
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
   location Unsupported("Point")?
+  /// @HideField()
+  user     User?                 @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: SetNull)
+  userId   Int?
+  /// @HideField()
+  city     City?                 @relation(fields: [cityId], references: [id], onDelete: SetNull, onUpdate: SetNull)
+  cityId   Int?
 
-  user   User? @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: SetNull)
-  userId Int?
-  city   City? @relation(fields: [cityId], references: [id], onDelete: SetNull, onUpdate: SetNull)
-  cityId Int?
-
+  /// @HideField()
   tags  Tag[]
+  /// @HideField()
   media ReportMedia[]
   @@map("reports")
 }
@@ -111,20 +137,27 @@ model Media {
   id        Int      @id @default(autoincrement())
   path      String
   name      String
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   reportMedia ReportMedia[]
   @@map("media")
 }
 
 model ReportMedia {
   id        Int      @id @default(autoincrement())
+  /// @HideField()
   createdAt DateTime @default(now())
+  /// @HideField()
   updatedAt DateTime @updatedAt
 
+  /// @HideField()
   report   Report @relation(fields: [reportId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   reportId Int
+  /// @HideField()
   media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   mediaId  Int
 

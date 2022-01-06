@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Int } from '@nestjs/graphql';
 import { City } from '../city/city.model';
@@ -20,28 +21,28 @@ export class Report {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date;
 
-    @Field(() => User, {nullable:true})
+    @HideField()
     user?: User | null;
 
     @Field(() => Int, {nullable:true})
     userId!: number | null;
 
-    @Field(() => City, {nullable:true})
+    @HideField()
     city?: City | null;
 
     @Field(() => Int, {nullable:true})
     cityId!: number | null;
 
-    @Field(() => [Tag], {nullable:true})
+    @HideField()
     tags?: Array<Tag>;
 
-    @Field(() => [ReportMedia], {nullable:true})
+    @HideField()
     media?: Array<ReportMedia>;
 
     @Field(() => ReportCount, {nullable:false})

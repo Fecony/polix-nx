@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { User } from '../user/user.model';
+import { HideField } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 
 @ObjectType()
@@ -16,15 +17,15 @@ export class SocialAccount {
     @Field(() => String, {nullable:false})
     providerId!: string;
 
-    @Field(() => User, {nullable:false})
+    @HideField()
     user?: User;
 
     @Field(() => Int, {nullable:false})
     userId!: number;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date;
 }

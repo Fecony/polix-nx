@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 
 @ObjectType()
 export class RegionCountAggregate {
@@ -14,10 +15,10 @@ export class RegionCountAggregate {
     @Field(() => Int, {nullable:false})
     countryId!: number;
 
-    @Field(() => Int, {nullable:false})
+    @HideField()
     createdAt!: number;
 
-    @Field(() => Int, {nullable:false})
+    @HideField()
     updatedAt!: number;
 
     @Field(() => Int, {nullable:false})

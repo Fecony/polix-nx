@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 import { TagCountAggregate } from './tag-count-aggregate.output';
 import { TagAvgAggregate } from './tag-avg-aggregate.output';
 import { TagSumAggregate } from './tag-sum-aggregate.output';
@@ -19,10 +20,10 @@ export class TagGroupBy {
     @Field(() => String, {nullable:false})
     slug!: string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
+    @HideField()
     updatedAt!: Date | string;
 
     @Field(() => TagCountAggregate, {nullable:true})
