@@ -25,6 +25,14 @@ export enum TagScalarFieldEnum {
     updatedAt = "updatedAt"
 }
 
+export enum StateScalarFieldEnum {
+    id = "id",
+    name = "name",
+    countryId = "countryId",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt"
+}
+
 export enum SocialAccountScalarFieldEnum {
     id = "id",
     provider = "provider",
@@ -52,14 +60,6 @@ export enum ReportScalarFieldEnum {
     cityId = "cityId"
 }
 
-export enum RegionScalarFieldEnum {
-    id = "id",
-    name = "name",
-    countryId = "countryId",
-    createdAt = "createdAt",
-    updatedAt = "updatedAt"
-}
-
 export enum SortOrder {
     asc = "asc",
     desc = "desc"
@@ -84,7 +84,7 @@ export enum CountryScalarFieldEnum {
 export enum CityScalarFieldEnum {
     id = "id",
     name = "name",
-    regionId = "regionId",
+    stateId = "stateId",
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }
@@ -93,10 +93,10 @@ registerEnumType(CityScalarFieldEnum, { name: 'CityScalarFieldEnum', description
 registerEnumType(CountryScalarFieldEnum, { name: 'CountryScalarFieldEnum', description: undefined })
 registerEnumType(MediaScalarFieldEnum, { name: 'MediaScalarFieldEnum', description: undefined })
 registerEnumType(SortOrder, { name: 'SortOrder', description: undefined })
-registerEnumType(RegionScalarFieldEnum, { name: 'RegionScalarFieldEnum', description: undefined })
 registerEnumType(ReportScalarFieldEnum, { name: 'ReportScalarFieldEnum', description: undefined })
 registerEnumType(ReportMediaScalarFieldEnum, { name: 'ReportMediaScalarFieldEnum', description: undefined })
 registerEnumType(SocialAccountScalarFieldEnum, { name: 'SocialAccountScalarFieldEnum', description: undefined })
+registerEnumType(StateScalarFieldEnum, { name: 'StateScalarFieldEnum', description: undefined })
 registerEnumType(TagScalarFieldEnum, { name: 'TagScalarFieldEnum', description: undefined })
 registerEnumType(UserScalarFieldEnum, { name: 'UserScalarFieldEnum', description: undefined })
 
@@ -143,7 +143,7 @@ export class CityAvgAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
     @Field(() => Boolean, {nullable:true})
-    regionId?: true;
+    stateId?: true;
 }
 
 @ObjectType()
@@ -151,7 +151,7 @@ export class CityAvgAggregate {
     @Field(() => Float, {nullable:true})
     id?: number;
     @Field(() => Float, {nullable:true})
-    regionId?: number;
+    stateId?: number;
 }
 
 @InputType()
@@ -159,7 +159,7 @@ export class CityAvgOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -169,7 +169,7 @@ export class CityCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
-    regionId?: true;
+    stateId?: true;
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;
     @Field(() => Boolean, {nullable:true})
@@ -185,7 +185,7 @@ export class CityCountAggregate {
     @Field(() => Int, {nullable:false})
     name!: number;
     @Field(() => Int, {nullable:false})
-    regionId!: number;
+    stateId!: number;
     @HideField()
     createdAt!: number;
     @HideField()
@@ -201,7 +201,7 @@ export class CityCountOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -215,15 +215,15 @@ export class CityCount {
 }
 
 @InputType()
-export class CityCreateManyRegionInputEnvelope {
-    @Field(() => [CityCreateManyRegionInput], {nullable:false})
-    data!: Array<CityCreateManyRegionInput>;
+export class CityCreateManyStateInputEnvelope {
+    @Field(() => [CityCreateManyStateInput], {nullable:false})
+    data!: Array<CityCreateManyStateInput>;
     @Field(() => Boolean, {nullable:true})
     skipDuplicates?: boolean;
 }
 
 @InputType()
-export class CityCreateManyRegionInput {
+export class CityCreateManyStateInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:false})
@@ -241,7 +241,7 @@ export class CityCreateManyInput {
     @Field(() => String, {nullable:false})
     name!: string;
     @Field(() => Int, {nullable:false})
-    regionId!: number;
+    stateId!: number;
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
@@ -249,13 +249,13 @@ export class CityCreateManyInput {
 }
 
 @InputType()
-export class CityCreateNestedManyWithoutRegionInput {
-    @Field(() => [CityCreateWithoutRegionInput], {nullable:true})
-    create?: Array<CityCreateWithoutRegionInput>;
-    @Field(() => [CityCreateOrConnectWithoutRegionInput], {nullable:true})
-    connectOrCreate?: Array<CityCreateOrConnectWithoutRegionInput>;
-    @Field(() => CityCreateManyRegionInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof CityCreateManyRegionInputEnvelope>;
+export class CityCreateNestedManyWithoutStateInput {
+    @Field(() => [CityCreateWithoutStateInput], {nullable:true})
+    create?: Array<CityCreateWithoutStateInput>;
+    @Field(() => [CityCreateOrConnectWithoutStateInput], {nullable:true})
+    connectOrCreate?: Array<CityCreateOrConnectWithoutStateInput>;
+    @Field(() => CityCreateManyStateInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof CityCreateManyStateInputEnvelope>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     connect?: Array<CityWhereUniqueInput>;
 }
@@ -271,14 +271,6 @@ export class CityCreateNestedOneWithoutReportsInput {
 }
 
 @InputType()
-export class CityCreateOrConnectWithoutRegionInput {
-    @Field(() => CityWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof CityWhereUniqueInput>;
-    @Field(() => CityCreateWithoutRegionInput, {nullable:false})
-    create!: InstanceType<typeof CityCreateWithoutRegionInput>;
-}
-
-@InputType()
 export class CityCreateOrConnectWithoutReportsInput {
     @Field(() => CityWhereUniqueInput, {nullable:false})
     where!: InstanceType<typeof CityWhereUniqueInput>;
@@ -287,7 +279,27 @@ export class CityCreateOrConnectWithoutReportsInput {
 }
 
 @InputType()
-export class CityCreateWithoutRegionInput {
+export class CityCreateOrConnectWithoutStateInput {
+    @Field(() => CityWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof CityWhereUniqueInput>;
+    @Field(() => CityCreateWithoutStateInput, {nullable:false})
+    create!: InstanceType<typeof CityCreateWithoutStateInput>;
+}
+
+@InputType()
+export class CityCreateWithoutReportsInput {
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => StateCreateNestedOneWithoutCitiesInput, {nullable:false})
+    state!: InstanceType<typeof StateCreateNestedOneWithoutCitiesInput>;
+}
+
+@InputType()
+export class CityCreateWithoutStateInput {
     @Field(() => String, {nullable:false})
     name!: string;
     @Field(() => Date, {nullable:true})
@@ -299,18 +311,6 @@ export class CityCreateWithoutRegionInput {
 }
 
 @InputType()
-export class CityCreateWithoutReportsInput {
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => RegionCreateNestedOneWithoutCityInput, {nullable:false})
-    region!: InstanceType<typeof RegionCreateNestedOneWithoutCityInput>;
-}
-
-@InputType()
 export class CityCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
@@ -318,8 +318,8 @@ export class CityCreateInput {
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
-    @Field(() => RegionCreateNestedOneWithoutCityInput, {nullable:false})
-    region!: InstanceType<typeof RegionCreateNestedOneWithoutCityInput>;
+    @Field(() => StateCreateNestedOneWithoutCitiesInput, {nullable:false})
+    state!: InstanceType<typeof StateCreateNestedOneWithoutCitiesInput>;
     @Field(() => ReportCreateNestedManyWithoutCityInput, {nullable:true})
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutCityInput>;
 }
@@ -357,7 +357,7 @@ export class CityGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
     @Field(() => Int, {nullable:false})
-    regionId!: number;
+    stateId!: number;
     @HideField()
     createdAt!: Date | string;
     @HideField()
@@ -391,7 +391,7 @@ export class CityMaxAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
-    regionId?: true;
+    stateId?: true;
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;
     @Field(() => Boolean, {nullable:true})
@@ -405,7 +405,7 @@ export class CityMaxAggregate {
     @Field(() => String, {nullable:true})
     name?: string;
     @Field(() => Int, {nullable:true})
-    regionId?: number;
+    stateId?: number;
     @HideField()
     createdAt?: Date | string;
     @HideField()
@@ -419,7 +419,7 @@ export class CityMaxOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -433,7 +433,7 @@ export class CityMinAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
-    regionId?: true;
+    stateId?: true;
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;
     @Field(() => Boolean, {nullable:true})
@@ -447,7 +447,7 @@ export class CityMinAggregate {
     @Field(() => String, {nullable:true})
     name?: string;
     @Field(() => Int, {nullable:true})
-    regionId?: number;
+    stateId?: number;
     @HideField()
     createdAt?: Date | string;
     @HideField()
@@ -461,7 +461,7 @@ export class CityMinOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -481,7 +481,7 @@ export class CityOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -504,10 +504,10 @@ export class CityOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => RegionOrderByWithRelationInput, {nullable:true})
-    region?: InstanceType<typeof RegionOrderByWithRelationInput>;
+    @Field(() => StateOrderByWithRelationInput, {nullable:true})
+    state?: InstanceType<typeof StateOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
@@ -537,7 +537,7 @@ export class CityScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
-    regionId?: InstanceType<typeof IntWithAggregatesFilter>;
+    stateId?: InstanceType<typeof IntWithAggregatesFilter>;
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
@@ -557,7 +557,7 @@ export class CityScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
-    regionId?: InstanceType<typeof IntFilter>;
+    stateId?: InstanceType<typeof IntFilter>;
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: InstanceType<typeof DateTimeFilter>;
     @Field(() => DateTimeFilter, {nullable:true})
@@ -569,7 +569,7 @@ export class CitySumAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
     @Field(() => Boolean, {nullable:true})
-    regionId?: true;
+    stateId?: true;
 }
 
 @ObjectType()
@@ -577,7 +577,7 @@ export class CitySumAggregate {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => Int, {nullable:true})
-    regionId?: number;
+    stateId?: number;
 }
 
 @InputType()
@@ -585,33 +585,19 @@ export class CitySumOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
-    regionId?: keyof typeof SortOrder;
+    stateId?: keyof typeof SortOrder;
 }
 
 @InputType()
-export class CityUncheckedCreateNestedManyWithoutRegionInput {
-    @Field(() => [CityCreateWithoutRegionInput], {nullable:true})
-    create?: Array<CityCreateWithoutRegionInput>;
-    @Field(() => [CityCreateOrConnectWithoutRegionInput], {nullable:true})
-    connectOrCreate?: Array<CityCreateOrConnectWithoutRegionInput>;
-    @Field(() => CityCreateManyRegionInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof CityCreateManyRegionInputEnvelope>;
+export class CityUncheckedCreateNestedManyWithoutStateInput {
+    @Field(() => [CityCreateWithoutStateInput], {nullable:true})
+    create?: Array<CityCreateWithoutStateInput>;
+    @Field(() => [CityCreateOrConnectWithoutStateInput], {nullable:true})
+    connectOrCreate?: Array<CityCreateOrConnectWithoutStateInput>;
+    @Field(() => CityCreateManyStateInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof CityCreateManyStateInputEnvelope>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     connect?: Array<CityWhereUniqueInput>;
-}
-
-@InputType()
-export class CityUncheckedCreateWithoutRegionInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => ReportUncheckedCreateNestedManyWithoutCityInput, {nullable:true})
-    reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutCityInput>;
 }
 
 @InputType()
@@ -621,7 +607,7 @@ export class CityUncheckedCreateWithoutReportsInput {
     @Field(() => String, {nullable:false})
     name!: string;
     @Field(() => Int, {nullable:false})
-    regionId!: number;
+    stateId!: number;
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
@@ -629,13 +615,11 @@ export class CityUncheckedCreateWithoutReportsInput {
 }
 
 @InputType()
-export class CityUncheckedCreateInput {
+export class CityUncheckedCreateWithoutStateInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Int, {nullable:false})
-    regionId!: number;
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
@@ -645,7 +629,23 @@ export class CityUncheckedCreateInput {
 }
 
 @InputType()
-export class CityUncheckedUpdateManyWithoutCityInput {
+export class CityUncheckedCreateInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Int, {nullable:false})
+    stateId!: number;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => ReportUncheckedCreateNestedManyWithoutCityInput, {nullable:true})
+    reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutCityInput>;
+}
+
+@InputType()
+export class CityUncheckedUpdateManyWithoutCitiesInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
@@ -657,15 +657,15 @@ export class CityUncheckedUpdateManyWithoutCityInput {
 }
 
 @InputType()
-export class CityUncheckedUpdateManyWithoutRegionInput {
-    @Field(() => [CityCreateWithoutRegionInput], {nullable:true})
-    create?: Array<CityCreateWithoutRegionInput>;
-    @Field(() => [CityCreateOrConnectWithoutRegionInput], {nullable:true})
-    connectOrCreate?: Array<CityCreateOrConnectWithoutRegionInput>;
-    @Field(() => [CityUpsertWithWhereUniqueWithoutRegionInput], {nullable:true})
-    upsert?: Array<CityUpsertWithWhereUniqueWithoutRegionInput>;
-    @Field(() => CityCreateManyRegionInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof CityCreateManyRegionInputEnvelope>;
+export class CityUncheckedUpdateManyWithoutStateInput {
+    @Field(() => [CityCreateWithoutStateInput], {nullable:true})
+    create?: Array<CityCreateWithoutStateInput>;
+    @Field(() => [CityCreateOrConnectWithoutStateInput], {nullable:true})
+    connectOrCreate?: Array<CityCreateOrConnectWithoutStateInput>;
+    @Field(() => [CityUpsertWithWhereUniqueWithoutStateInput], {nullable:true})
+    upsert?: Array<CityUpsertWithWhereUniqueWithoutStateInput>;
+    @Field(() => CityCreateManyStateInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof CityCreateManyStateInputEnvelope>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     set?: Array<CityWhereUniqueInput>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
@@ -674,10 +674,10 @@ export class CityUncheckedUpdateManyWithoutRegionInput {
     delete?: Array<CityWhereUniqueInput>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     connect?: Array<CityWhereUniqueInput>;
-    @Field(() => [CityUpdateWithWhereUniqueWithoutRegionInput], {nullable:true})
-    update?: Array<CityUpdateWithWhereUniqueWithoutRegionInput>;
-    @Field(() => [CityUpdateManyWithWhereWithoutRegionInput], {nullable:true})
-    updateMany?: Array<CityUpdateManyWithWhereWithoutRegionInput>;
+    @Field(() => [CityUpdateWithWhereUniqueWithoutStateInput], {nullable:true})
+    update?: Array<CityUpdateWithWhereUniqueWithoutStateInput>;
+    @Field(() => [CityUpdateManyWithWhereWithoutStateInput], {nullable:true})
+    updateMany?: Array<CityUpdateManyWithWhereWithoutStateInput>;
     @Field(() => [CityScalarWhereInput], {nullable:true})
     deleteMany?: Array<CityScalarWhereInput>;
 }
@@ -689,7 +689,7 @@ export class CityUncheckedUpdateManyInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
@@ -697,7 +697,21 @@ export class CityUncheckedUpdateManyInput {
 }
 
 @InputType()
-export class CityUncheckedUpdateWithoutRegionInput {
+export class CityUncheckedUpdateWithoutReportsInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+
+@InputType()
+export class CityUncheckedUpdateWithoutStateInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
@@ -711,27 +725,13 @@ export class CityUncheckedUpdateWithoutRegionInput {
 }
 
 @InputType()
-export class CityUncheckedUpdateWithoutReportsInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-
-@InputType()
 export class CityUncheckedUpdateInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
@@ -751,7 +751,7 @@ export class CityUpdateManyMutationInput {
 }
 
 @InputType()
-export class CityUpdateManyWithWhereWithoutRegionInput {
+export class CityUpdateManyWithWhereWithoutStateInput {
     @Field(() => CityScalarWhereInput, {nullable:false})
     where!: InstanceType<typeof CityScalarWhereInput>;
     @Field(() => CityUpdateManyMutationInput, {nullable:false})
@@ -759,15 +759,15 @@ export class CityUpdateManyWithWhereWithoutRegionInput {
 }
 
 @InputType()
-export class CityUpdateManyWithoutRegionInput {
-    @Field(() => [CityCreateWithoutRegionInput], {nullable:true})
-    create?: Array<CityCreateWithoutRegionInput>;
-    @Field(() => [CityCreateOrConnectWithoutRegionInput], {nullable:true})
-    connectOrCreate?: Array<CityCreateOrConnectWithoutRegionInput>;
-    @Field(() => [CityUpsertWithWhereUniqueWithoutRegionInput], {nullable:true})
-    upsert?: Array<CityUpsertWithWhereUniqueWithoutRegionInput>;
-    @Field(() => CityCreateManyRegionInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof CityCreateManyRegionInputEnvelope>;
+export class CityUpdateManyWithoutStateInput {
+    @Field(() => [CityCreateWithoutStateInput], {nullable:true})
+    create?: Array<CityCreateWithoutStateInput>;
+    @Field(() => [CityCreateOrConnectWithoutStateInput], {nullable:true})
+    connectOrCreate?: Array<CityCreateOrConnectWithoutStateInput>;
+    @Field(() => [CityUpsertWithWhereUniqueWithoutStateInput], {nullable:true})
+    upsert?: Array<CityUpsertWithWhereUniqueWithoutStateInput>;
+    @Field(() => CityCreateManyStateInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof CityCreateManyStateInputEnvelope>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     set?: Array<CityWhereUniqueInput>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
@@ -776,10 +776,10 @@ export class CityUpdateManyWithoutRegionInput {
     delete?: Array<CityWhereUniqueInput>;
     @Field(() => [CityWhereUniqueInput], {nullable:true})
     connect?: Array<CityWhereUniqueInput>;
-    @Field(() => [CityUpdateWithWhereUniqueWithoutRegionInput], {nullable:true})
-    update?: Array<CityUpdateWithWhereUniqueWithoutRegionInput>;
-    @Field(() => [CityUpdateManyWithWhereWithoutRegionInput], {nullable:true})
-    updateMany?: Array<CityUpdateManyWithWhereWithoutRegionInput>;
+    @Field(() => [CityUpdateWithWhereUniqueWithoutStateInput], {nullable:true})
+    update?: Array<CityUpdateWithWhereUniqueWithoutStateInput>;
+    @Field(() => [CityUpdateManyWithWhereWithoutStateInput], {nullable:true})
+    updateMany?: Array<CityUpdateManyWithWhereWithoutStateInput>;
     @Field(() => [CityScalarWhereInput], {nullable:true})
     deleteMany?: Array<CityScalarWhereInput>;
 }
@@ -803,23 +803,11 @@ export class CityUpdateOneWithoutReportsInput {
 }
 
 @InputType()
-export class CityUpdateWithWhereUniqueWithoutRegionInput {
+export class CityUpdateWithWhereUniqueWithoutStateInput {
     @Field(() => CityWhereUniqueInput, {nullable:false})
     where!: InstanceType<typeof CityWhereUniqueInput>;
-    @Field(() => CityUpdateWithoutRegionInput, {nullable:false})
-    data!: InstanceType<typeof CityUpdateWithoutRegionInput>;
-}
-
-@InputType()
-export class CityUpdateWithoutRegionInput {
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateManyWithoutCityInput, {nullable:true})
-    reports?: InstanceType<typeof ReportUpdateManyWithoutCityInput>;
+    @Field(() => CityUpdateWithoutStateInput, {nullable:false})
+    data!: InstanceType<typeof CityUpdateWithoutStateInput>;
 }
 
 @InputType()
@@ -830,8 +818,20 @@ export class CityUpdateWithoutReportsInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => RegionUpdateOneRequiredWithoutCityInput, {nullable:true})
-    region?: InstanceType<typeof RegionUpdateOneRequiredWithoutCityInput>;
+    @Field(() => StateUpdateOneRequiredWithoutCitiesInput, {nullable:true})
+    state?: InstanceType<typeof StateUpdateOneRequiredWithoutCitiesInput>;
+}
+
+@InputType()
+export class CityUpdateWithoutStateInput {
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => ReportUpdateManyWithoutCityInput, {nullable:true})
+    reports?: InstanceType<typeof ReportUpdateManyWithoutCityInput>;
 }
 
 @InputType()
@@ -842,20 +842,20 @@ export class CityUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => RegionUpdateOneRequiredWithoutCityInput, {nullable:true})
-    region?: InstanceType<typeof RegionUpdateOneRequiredWithoutCityInput>;
+    @Field(() => StateUpdateOneRequiredWithoutCitiesInput, {nullable:true})
+    state?: InstanceType<typeof StateUpdateOneRequiredWithoutCitiesInput>;
     @Field(() => ReportUpdateManyWithoutCityInput, {nullable:true})
     reports?: InstanceType<typeof ReportUpdateManyWithoutCityInput>;
 }
 
 @InputType()
-export class CityUpsertWithWhereUniqueWithoutRegionInput {
+export class CityUpsertWithWhereUniqueWithoutStateInput {
     @Field(() => CityWhereUniqueInput, {nullable:false})
     where!: InstanceType<typeof CityWhereUniqueInput>;
-    @Field(() => CityUpdateWithoutRegionInput, {nullable:false})
-    update!: InstanceType<typeof CityUpdateWithoutRegionInput>;
-    @Field(() => CityCreateWithoutRegionInput, {nullable:false})
-    create!: InstanceType<typeof CityCreateWithoutRegionInput>;
+    @Field(() => CityUpdateWithoutStateInput, {nullable:false})
+    update!: InstanceType<typeof CityUpdateWithoutStateInput>;
+    @Field(() => CityCreateWithoutStateInput, {nullable:false})
+    create!: InstanceType<typeof CityCreateWithoutStateInput>;
 }
 
 @InputType()
@@ -870,8 +870,6 @@ export class CityUpsertWithoutReportsInput {
 export class CityWhereUniqueInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => String, {nullable:true})
-    name?: string;
 }
 
 @InputType()
@@ -886,10 +884,10 @@ export class CityWhereInput {
     id?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
-    @Field(() => RegionRelationFilter, {nullable:true})
-    region?: InstanceType<typeof RegionRelationFilter>;
+    @Field(() => StateRelationFilter, {nullable:true})
+    state?: InstanceType<typeof StateRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
-    regionId?: InstanceType<typeof IntFilter>;
+    stateId?: InstanceType<typeof IntFilter>;
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: InstanceType<typeof DateTimeFilter>;
     @Field(() => DateTimeFilter, {nullable:true})
@@ -905,9 +903,9 @@ export class City {
     @Field(() => String, {nullable:false})
     name!: string;
     @HideField()
-    region?: InstanceType<typeof Region>;
+    state?: InstanceType<typeof State>;
     @Field(() => Int, {nullable:false})
-    regionId!: number;
+    stateId!: number;
     @HideField()
     createdAt!: Date;
     @HideField()
@@ -1113,7 +1111,7 @@ export class CountryCountOrderByAggregateInput {
 @ObjectType()
 export class CountryCount {
     @Field(() => Int, {nullable:false})
-    region!: number;
+    states!: number;
 }
 
 @InputType()
@@ -1131,25 +1129,25 @@ export class CountryCreateManyInput {
 }
 
 @InputType()
-export class CountryCreateNestedOneWithoutRegionInput {
-    @Field(() => CountryCreateWithoutRegionInput, {nullable:true})
-    create?: InstanceType<typeof CountryCreateWithoutRegionInput>;
-    @Field(() => CountryCreateOrConnectWithoutRegionInput, {nullable:true})
-    connectOrCreate?: InstanceType<typeof CountryCreateOrConnectWithoutRegionInput>;
+export class CountryCreateNestedOneWithoutStatesInput {
+    @Field(() => CountryCreateWithoutStatesInput, {nullable:true})
+    create?: InstanceType<typeof CountryCreateWithoutStatesInput>;
+    @Field(() => CountryCreateOrConnectWithoutStatesInput, {nullable:true})
+    connectOrCreate?: InstanceType<typeof CountryCreateOrConnectWithoutStatesInput>;
     @Field(() => CountryWhereUniqueInput, {nullable:true})
     connect?: InstanceType<typeof CountryWhereUniqueInput>;
 }
 
 @InputType()
-export class CountryCreateOrConnectWithoutRegionInput {
+export class CountryCreateOrConnectWithoutStatesInput {
     @Field(() => CountryWhereUniqueInput, {nullable:false})
     where!: InstanceType<typeof CountryWhereUniqueInput>;
-    @Field(() => CountryCreateWithoutRegionInput, {nullable:false})
-    create!: InstanceType<typeof CountryCreateWithoutRegionInput>;
+    @Field(() => CountryCreateWithoutStatesInput, {nullable:false})
+    create!: InstanceType<typeof CountryCreateWithoutStatesInput>;
 }
 
 @InputType()
-export class CountryCreateWithoutRegionInput {
+export class CountryCreateWithoutStatesInput {
     @Field(() => String, {nullable:false})
     name!: string;
     @Field(() => String, {nullable:false})
@@ -1170,8 +1168,8 @@ export class CountryCreateInput {
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
-    @Field(() => RegionCreateNestedManyWithoutCountryInput, {nullable:true})
-    region?: InstanceType<typeof RegionCreateNestedManyWithoutCountryInput>;
+    @Field(() => StateCreateNestedManyWithoutCountryInput, {nullable:true})
+    states?: InstanceType<typeof StateCreateNestedManyWithoutCountryInput>;
 }
 
 @ArgsType()
@@ -1344,8 +1342,8 @@ export class CountryOrderByWithRelationInput {
     createdAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => RegionOrderByRelationAggregateInput, {nullable:true})
-    region?: InstanceType<typeof RegionOrderByRelationAggregateInput>;
+    @Field(() => StateOrderByRelationAggregateInput, {nullable:true})
+    states?: InstanceType<typeof StateOrderByRelationAggregateInput>;
 }
 
 @InputType()
@@ -1395,7 +1393,7 @@ export class CountrySumOrderByAggregateInput {
 }
 
 @InputType()
-export class CountryUncheckedCreateWithoutRegionInput {
+export class CountryUncheckedCreateWithoutStatesInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:false})
@@ -1420,8 +1418,8 @@ export class CountryUncheckedCreateInput {
     createdAt?: Date | string;
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
-    @Field(() => RegionUncheckedCreateNestedManyWithoutCountryInput, {nullable:true})
-    region?: InstanceType<typeof RegionUncheckedCreateNestedManyWithoutCountryInput>;
+    @Field(() => StateUncheckedCreateNestedManyWithoutCountryInput, {nullable:true})
+    states?: InstanceType<typeof StateUncheckedCreateNestedManyWithoutCountryInput>;
 }
 
 @InputType()
@@ -1439,7 +1437,7 @@ export class CountryUncheckedUpdateManyInput {
 }
 
 @InputType()
-export class CountryUncheckedUpdateWithoutRegionInput {
+export class CountryUncheckedUpdateWithoutStatesInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
@@ -1464,8 +1462,8 @@ export class CountryUncheckedUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => RegionUncheckedUpdateManyWithoutCountryInput, {nullable:true})
-    region?: InstanceType<typeof RegionUncheckedUpdateManyWithoutCountryInput>;
+    @Field(() => StateUncheckedUpdateManyWithoutCountryInput, {nullable:true})
+    states?: InstanceType<typeof StateUncheckedUpdateManyWithoutCountryInput>;
 }
 
 @InputType()
@@ -1481,21 +1479,21 @@ export class CountryUpdateManyMutationInput {
 }
 
 @InputType()
-export class CountryUpdateOneRequiredWithoutRegionInput {
-    @Field(() => CountryCreateWithoutRegionInput, {nullable:true})
-    create?: InstanceType<typeof CountryCreateWithoutRegionInput>;
-    @Field(() => CountryCreateOrConnectWithoutRegionInput, {nullable:true})
-    connectOrCreate?: InstanceType<typeof CountryCreateOrConnectWithoutRegionInput>;
-    @Field(() => CountryUpsertWithoutRegionInput, {nullable:true})
-    upsert?: InstanceType<typeof CountryUpsertWithoutRegionInput>;
+export class CountryUpdateOneRequiredWithoutStatesInput {
+    @Field(() => CountryCreateWithoutStatesInput, {nullable:true})
+    create?: InstanceType<typeof CountryCreateWithoutStatesInput>;
+    @Field(() => CountryCreateOrConnectWithoutStatesInput, {nullable:true})
+    connectOrCreate?: InstanceType<typeof CountryCreateOrConnectWithoutStatesInput>;
+    @Field(() => CountryUpsertWithoutStatesInput, {nullable:true})
+    upsert?: InstanceType<typeof CountryUpsertWithoutStatesInput>;
     @Field(() => CountryWhereUniqueInput, {nullable:true})
     connect?: InstanceType<typeof CountryWhereUniqueInput>;
-    @Field(() => CountryUpdateWithoutRegionInput, {nullable:true})
-    update?: InstanceType<typeof CountryUpdateWithoutRegionInput>;
+    @Field(() => CountryUpdateWithoutStatesInput, {nullable:true})
+    update?: InstanceType<typeof CountryUpdateWithoutStatesInput>;
 }
 
 @InputType()
-export class CountryUpdateWithoutRegionInput {
+export class CountryUpdateWithoutStatesInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
@@ -1516,16 +1514,16 @@ export class CountryUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => RegionUpdateManyWithoutCountryInput, {nullable:true})
-    region?: InstanceType<typeof RegionUpdateManyWithoutCountryInput>;
+    @Field(() => StateUpdateManyWithoutCountryInput, {nullable:true})
+    states?: InstanceType<typeof StateUpdateManyWithoutCountryInput>;
 }
 
 @InputType()
-export class CountryUpsertWithoutRegionInput {
-    @Field(() => CountryUpdateWithoutRegionInput, {nullable:false})
-    update!: InstanceType<typeof CountryUpdateWithoutRegionInput>;
-    @Field(() => CountryCreateWithoutRegionInput, {nullable:false})
-    create!: InstanceType<typeof CountryCreateWithoutRegionInput>;
+export class CountryUpsertWithoutStatesInput {
+    @Field(() => CountryUpdateWithoutStatesInput, {nullable:false})
+    update!: InstanceType<typeof CountryUpdateWithoutStatesInput>;
+    @Field(() => CountryCreateWithoutStatesInput, {nullable:false})
+    create!: InstanceType<typeof CountryCreateWithoutStatesInput>;
 }
 
 @InputType()
@@ -1556,8 +1554,8 @@ export class CountryWhereInput {
     createdAt?: InstanceType<typeof DateTimeFilter>;
     @Field(() => DateTimeFilter, {nullable:true})
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => RegionListRelationFilter, {nullable:true})
-    region?: InstanceType<typeof RegionListRelationFilter>;
+    @Field(() => StateListRelationFilter, {nullable:true})
+    states?: InstanceType<typeof StateListRelationFilter>;
 }
 
 @ObjectType()
@@ -1573,7 +1571,7 @@ export class Country {
     @HideField()
     updatedAt!: Date;
     @HideField()
-    region?: Array<Region>;
+    states?: Array<State>;
     @Field(() => CountryCount, {nullable:false})
     _count?: InstanceType<typeof CountryCount>;
 }
@@ -3052,910 +3050,6 @@ export class StringWithAggregatesFilter {
     _min?: InstanceType<typeof NestedStringFilter>;
     @Field(() => NestedStringFilter, {nullable:true})
     _max?: InstanceType<typeof NestedStringFilter>;
-}
-
-@ObjectType()
-export class AggregateRegion {
-    @Field(() => RegionCountAggregate, {nullable:true})
-    _count?: InstanceType<typeof RegionCountAggregate>;
-    @Field(() => RegionAvgAggregate, {nullable:true})
-    _avg?: InstanceType<typeof RegionAvgAggregate>;
-    @Field(() => RegionSumAggregate, {nullable:true})
-    _sum?: InstanceType<typeof RegionSumAggregate>;
-    @Field(() => RegionMinAggregate, {nullable:true})
-    _min?: InstanceType<typeof RegionMinAggregate>;
-    @Field(() => RegionMaxAggregate, {nullable:true})
-    _max?: InstanceType<typeof RegionMaxAggregate>;
-}
-
-@ArgsType()
-export class CreateManyRegionArgs {
-    @Field(() => [RegionCreateManyInput], {nullable:false})
-    data!: Array<RegionCreateManyInput>;
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
-}
-
-@ArgsType()
-export class CreateOneRegionArgs {
-    @Field(() => RegionCreateInput, {nullable:false})
-    data!: InstanceType<typeof RegionCreateInput>;
-}
-
-@ArgsType()
-export class DeleteManyRegionArgs {
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-}
-
-@ArgsType()
-export class DeleteOneRegionArgs {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-}
-
-@ArgsType()
-export class FindFirstRegionArgs {
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => [RegionOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<RegionOrderByWithRelationInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:true})
-    cursor?: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => Int, {nullable:true})
-    take?: number;
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-    @Field(() => [RegionScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof RegionScalarFieldEnum>;
-}
-
-@ArgsType()
-export class FindManyRegionArgs {
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => [RegionOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<RegionOrderByWithRelationInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:true})
-    cursor?: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => Int, {nullable:true})
-    take?: number;
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-    @Field(() => [RegionScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof RegionScalarFieldEnum>;
-}
-
-@ArgsType()
-export class FindUniqueRegionArgs {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-}
-
-@ArgsType()
-export class RegionAggregateArgs {
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => [RegionOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<RegionOrderByWithRelationInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:true})
-    cursor?: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => Int, {nullable:true})
-    take?: number;
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-    @Field(() => RegionCountAggregateInput, {nullable:true})
-    _count?: InstanceType<typeof RegionCountAggregateInput>;
-    @Field(() => RegionAvgAggregateInput, {nullable:true})
-    _avg?: InstanceType<typeof RegionAvgAggregateInput>;
-    @Field(() => RegionSumAggregateInput, {nullable:true})
-    _sum?: InstanceType<typeof RegionSumAggregateInput>;
-    @Field(() => RegionMinAggregateInput, {nullable:true})
-    _min?: InstanceType<typeof RegionMinAggregateInput>;
-    @Field(() => RegionMaxAggregateInput, {nullable:true})
-    _max?: InstanceType<typeof RegionMaxAggregateInput>;
-}
-
-@InputType()
-export class RegionAvgAggregateInput {
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
-    @Field(() => Boolean, {nullable:true})
-    countryId?: true;
-}
-
-@ObjectType()
-export class RegionAvgAggregate {
-    @Field(() => Float, {nullable:true})
-    id?: number;
-    @Field(() => Float, {nullable:true})
-    countryId?: number;
-}
-
-@InputType()
-export class RegionAvgOrderByAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-}
-
-@InputType()
-export class RegionCountAggregateInput {
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
-    @Field(() => Boolean, {nullable:true})
-    name?: true;
-    @Field(() => Boolean, {nullable:true})
-    countryId?: true;
-    @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
-    updatedAt?: true;
-    @Field(() => Boolean, {nullable:true})
-    _all?: true;
-}
-
-@ObjectType()
-export class RegionCountAggregate {
-    @Field(() => Int, {nullable:false})
-    id!: number;
-    @Field(() => Int, {nullable:false})
-    name!: number;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @HideField()
-    createdAt!: number;
-    @HideField()
-    updatedAt!: number;
-    @Field(() => Int, {nullable:false})
-    _all!: number;
-}
-
-@InputType()
-export class RegionCountOrderByAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-}
-
-@ObjectType()
-export class RegionCount {
-    @Field(() => Int, {nullable:false})
-    city!: number;
-}
-
-@InputType()
-export class RegionCreateManyCountryInputEnvelope {
-    @Field(() => [RegionCreateManyCountryInput], {nullable:false})
-    data!: Array<RegionCreateManyCountryInput>;
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
-}
-
-@InputType()
-export class RegionCreateManyCountryInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-}
-
-@InputType()
-export class RegionCreateManyInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-}
-
-@InputType()
-export class RegionCreateNestedManyWithoutCountryInput {
-    @Field(() => [RegionCreateWithoutCountryInput], {nullable:true})
-    create?: Array<RegionCreateWithoutCountryInput>;
-    @Field(() => [RegionCreateOrConnectWithoutCountryInput], {nullable:true})
-    connectOrCreate?: Array<RegionCreateOrConnectWithoutCountryInput>;
-    @Field(() => RegionCreateManyCountryInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof RegionCreateManyCountryInputEnvelope>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    connect?: Array<RegionWhereUniqueInput>;
-}
-
-@InputType()
-export class RegionCreateNestedOneWithoutCityInput {
-    @Field(() => RegionCreateWithoutCityInput, {nullable:true})
-    create?: InstanceType<typeof RegionCreateWithoutCityInput>;
-    @Field(() => RegionCreateOrConnectWithoutCityInput, {nullable:true})
-    connectOrCreate?: InstanceType<typeof RegionCreateOrConnectWithoutCityInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:true})
-    connect?: InstanceType<typeof RegionWhereUniqueInput>;
-}
-
-@InputType()
-export class RegionCreateOrConnectWithoutCityInput {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionCreateWithoutCityInput, {nullable:false})
-    create!: InstanceType<typeof RegionCreateWithoutCityInput>;
-}
-
-@InputType()
-export class RegionCreateOrConnectWithoutCountryInput {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionCreateWithoutCountryInput, {nullable:false})
-    create!: InstanceType<typeof RegionCreateWithoutCountryInput>;
-}
-
-@InputType()
-export class RegionCreateWithoutCityInput {
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => CountryCreateNestedOneWithoutRegionInput, {nullable:false})
-    country!: InstanceType<typeof CountryCreateNestedOneWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionCreateWithoutCountryInput {
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => CityCreateNestedManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityCreateNestedManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionCreateInput {
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => CountryCreateNestedOneWithoutRegionInput, {nullable:false})
-    country!: InstanceType<typeof CountryCreateNestedOneWithoutRegionInput>;
-    @Field(() => CityCreateNestedManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityCreateNestedManyWithoutRegionInput>;
-}
-
-@ArgsType()
-export class RegionGroupByArgs {
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => [RegionOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<RegionOrderByWithAggregationInput>;
-    @Field(() => [RegionScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof RegionScalarFieldEnum>;
-    @Field(() => RegionScalarWhereWithAggregatesInput, {nullable:true})
-    having?: InstanceType<typeof RegionScalarWhereWithAggregatesInput>;
-    @Field(() => Int, {nullable:true})
-    take?: number;
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-    @Field(() => RegionCountAggregateInput, {nullable:true})
-    _count?: InstanceType<typeof RegionCountAggregateInput>;
-    @Field(() => RegionAvgAggregateInput, {nullable:true})
-    _avg?: InstanceType<typeof RegionAvgAggregateInput>;
-    @Field(() => RegionSumAggregateInput, {nullable:true})
-    _sum?: InstanceType<typeof RegionSumAggregateInput>;
-    @Field(() => RegionMinAggregateInput, {nullable:true})
-    _min?: InstanceType<typeof RegionMinAggregateInput>;
-    @Field(() => RegionMaxAggregateInput, {nullable:true})
-    _max?: InstanceType<typeof RegionMaxAggregateInput>;
-}
-
-@ObjectType()
-export class RegionGroupBy {
-    @Field(() => Int, {nullable:false})
-    id!: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @HideField()
-    createdAt!: Date | string;
-    @HideField()
-    updatedAt!: Date | string;
-    @Field(() => RegionCountAggregate, {nullable:true})
-    _count?: InstanceType<typeof RegionCountAggregate>;
-    @Field(() => RegionAvgAggregate, {nullable:true})
-    _avg?: InstanceType<typeof RegionAvgAggregate>;
-    @Field(() => RegionSumAggregate, {nullable:true})
-    _sum?: InstanceType<typeof RegionSumAggregate>;
-    @Field(() => RegionMinAggregate, {nullable:true})
-    _min?: InstanceType<typeof RegionMinAggregate>;
-    @Field(() => RegionMaxAggregate, {nullable:true})
-    _max?: InstanceType<typeof RegionMaxAggregate>;
-}
-
-@InputType()
-export class RegionListRelationFilter {
-    @Field(() => RegionWhereInput, {nullable:true})
-    every?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => RegionWhereInput, {nullable:true})
-    some?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => RegionWhereInput, {nullable:true})
-    none?: InstanceType<typeof RegionWhereInput>;
-}
-
-@InputType()
-export class RegionMaxAggregateInput {
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
-    @Field(() => Boolean, {nullable:true})
-    name?: true;
-    @Field(() => Boolean, {nullable:true})
-    countryId?: true;
-    @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
-    updatedAt?: true;
-}
-
-@ObjectType()
-export class RegionMaxAggregate {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:true})
-    name?: string;
-    @Field(() => Int, {nullable:true})
-    countryId?: number;
-    @HideField()
-    createdAt?: Date | string;
-    @HideField()
-    updatedAt?: Date | string;
-}
-
-@InputType()
-export class RegionMaxOrderByAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-}
-
-@InputType()
-export class RegionMinAggregateInput {
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
-    @Field(() => Boolean, {nullable:true})
-    name?: true;
-    @Field(() => Boolean, {nullable:true})
-    countryId?: true;
-    @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
-    updatedAt?: true;
-}
-
-@ObjectType()
-export class RegionMinAggregate {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:true})
-    name?: string;
-    @Field(() => Int, {nullable:true})
-    countryId?: number;
-    @HideField()
-    createdAt?: Date | string;
-    @HideField()
-    updatedAt?: Date | string;
-}
-
-@InputType()
-export class RegionMinOrderByAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-}
-
-@InputType()
-export class RegionOrderByRelationAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    _count?: keyof typeof SortOrder;
-}
-
-@InputType()
-export class RegionOrderByWithAggregationInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-    @Field(() => RegionCountOrderByAggregateInput, {nullable:true})
-    _count?: InstanceType<typeof RegionCountOrderByAggregateInput>;
-    @Field(() => RegionAvgOrderByAggregateInput, {nullable:true})
-    _avg?: InstanceType<typeof RegionAvgOrderByAggregateInput>;
-    @Field(() => RegionMaxOrderByAggregateInput, {nullable:true})
-    _max?: InstanceType<typeof RegionMaxOrderByAggregateInput>;
-    @Field(() => RegionMinOrderByAggregateInput, {nullable:true})
-    _min?: InstanceType<typeof RegionMinOrderByAggregateInput>;
-    @Field(() => RegionSumOrderByAggregateInput, {nullable:true})
-    _sum?: InstanceType<typeof RegionSumOrderByAggregateInput>;
-}
-
-@InputType()
-export class RegionOrderByWithRelationInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
-    @Field(() => CountryOrderByWithRelationInput, {nullable:true})
-    country?: InstanceType<typeof CountryOrderByWithRelationInput>;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-    @Field(() => CityOrderByRelationAggregateInput, {nullable:true})
-    city?: InstanceType<typeof CityOrderByRelationAggregateInput>;
-}
-
-@InputType()
-export class RegionRelationFilter {
-    @Field(() => RegionWhereInput, {nullable:true})
-    is?: InstanceType<typeof RegionWhereInput>;
-    @Field(() => RegionWhereInput, {nullable:true})
-    isNot?: InstanceType<typeof RegionWhereInput>;
-}
-
-@InputType()
-export class RegionScalarWhereWithAggregatesInput {
-    @Field(() => [RegionScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<RegionScalarWhereWithAggregatesInput>;
-    @Field(() => [RegionScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<RegionScalarWhereWithAggregatesInput>;
-    @Field(() => [RegionScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<RegionScalarWhereWithAggregatesInput>;
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    name?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    countryId?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-}
-
-@InputType()
-export class RegionScalarWhereInput {
-    @Field(() => [RegionScalarWhereInput], {nullable:true})
-    AND?: Array<RegionScalarWhereInput>;
-    @Field(() => [RegionScalarWhereInput], {nullable:true})
-    OR?: Array<RegionScalarWhereInput>;
-    @Field(() => [RegionScalarWhereInput], {nullable:true})
-    NOT?: Array<RegionScalarWhereInput>;
-    @Field(() => IntFilter, {nullable:true})
-    id?: InstanceType<typeof IntFilter>;
-    @Field(() => StringFilter, {nullable:true})
-    name?: InstanceType<typeof StringFilter>;
-    @Field(() => IntFilter, {nullable:true})
-    countryId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFilter>;
-}
-
-@InputType()
-export class RegionSumAggregateInput {
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
-    @Field(() => Boolean, {nullable:true})
-    countryId?: true;
-}
-
-@ObjectType()
-export class RegionSumAggregate {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => Int, {nullable:true})
-    countryId?: number;
-}
-
-@InputType()
-export class RegionSumOrderByAggregateInput {
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
-    countryId?: keyof typeof SortOrder;
-}
-
-@InputType()
-export class RegionUncheckedCreateNestedManyWithoutCountryInput {
-    @Field(() => [RegionCreateWithoutCountryInput], {nullable:true})
-    create?: Array<RegionCreateWithoutCountryInput>;
-    @Field(() => [RegionCreateOrConnectWithoutCountryInput], {nullable:true})
-    connectOrCreate?: Array<RegionCreateOrConnectWithoutCountryInput>;
-    @Field(() => RegionCreateManyCountryInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof RegionCreateManyCountryInputEnvelope>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    connect?: Array<RegionWhereUniqueInput>;
-}
-
-@InputType()
-export class RegionUncheckedCreateWithoutCityInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-}
-
-@InputType()
-export class RegionUncheckedCreateWithoutCountryInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => CityUncheckedCreateNestedManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUncheckedCreateInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-    @Field(() => CityUncheckedCreateNestedManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateManyWithoutCountryInput {
-    @Field(() => [RegionCreateWithoutCountryInput], {nullable:true})
-    create?: Array<RegionCreateWithoutCountryInput>;
-    @Field(() => [RegionCreateOrConnectWithoutCountryInput], {nullable:true})
-    connectOrCreate?: Array<RegionCreateOrConnectWithoutCountryInput>;
-    @Field(() => [RegionUpsertWithWhereUniqueWithoutCountryInput], {nullable:true})
-    upsert?: Array<RegionUpsertWithWhereUniqueWithoutCountryInput>;
-    @Field(() => RegionCreateManyCountryInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof RegionCreateManyCountryInputEnvelope>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    set?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    disconnect?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    delete?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    connect?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionUpdateWithWhereUniqueWithoutCountryInput], {nullable:true})
-    update?: Array<RegionUpdateWithWhereUniqueWithoutCountryInput>;
-    @Field(() => [RegionUpdateManyWithWhereWithoutCountryInput], {nullable:true})
-    updateMany?: Array<RegionUpdateManyWithWhereWithoutCountryInput>;
-    @Field(() => [RegionScalarWhereInput], {nullable:true})
-    deleteMany?: Array<RegionScalarWhereInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateManyWithoutRegionInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateManyInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateWithoutCityInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateWithoutCountryInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUncheckedUpdateManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUncheckedUpdateManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUncheckedUpdateInput {
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUncheckedUpdateManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUncheckedUpdateManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUpdateManyMutationInput {
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-
-@InputType()
-export class RegionUpdateManyWithWhereWithoutCountryInput {
-    @Field(() => RegionScalarWhereInput, {nullable:false})
-    where!: InstanceType<typeof RegionScalarWhereInput>;
-    @Field(() => RegionUpdateManyMutationInput, {nullable:false})
-    data!: InstanceType<typeof RegionUpdateManyMutationInput>;
-}
-
-@InputType()
-export class RegionUpdateManyWithoutCountryInput {
-    @Field(() => [RegionCreateWithoutCountryInput], {nullable:true})
-    create?: Array<RegionCreateWithoutCountryInput>;
-    @Field(() => [RegionCreateOrConnectWithoutCountryInput], {nullable:true})
-    connectOrCreate?: Array<RegionCreateOrConnectWithoutCountryInput>;
-    @Field(() => [RegionUpsertWithWhereUniqueWithoutCountryInput], {nullable:true})
-    upsert?: Array<RegionUpsertWithWhereUniqueWithoutCountryInput>;
-    @Field(() => RegionCreateManyCountryInputEnvelope, {nullable:true})
-    createMany?: InstanceType<typeof RegionCreateManyCountryInputEnvelope>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    set?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    disconnect?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    delete?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionWhereUniqueInput], {nullable:true})
-    connect?: Array<RegionWhereUniqueInput>;
-    @Field(() => [RegionUpdateWithWhereUniqueWithoutCountryInput], {nullable:true})
-    update?: Array<RegionUpdateWithWhereUniqueWithoutCountryInput>;
-    @Field(() => [RegionUpdateManyWithWhereWithoutCountryInput], {nullable:true})
-    updateMany?: Array<RegionUpdateManyWithWhereWithoutCountryInput>;
-    @Field(() => [RegionScalarWhereInput], {nullable:true})
-    deleteMany?: Array<RegionScalarWhereInput>;
-}
-
-@InputType()
-export class RegionUpdateOneRequiredWithoutCityInput {
-    @Field(() => RegionCreateWithoutCityInput, {nullable:true})
-    create?: InstanceType<typeof RegionCreateWithoutCityInput>;
-    @Field(() => RegionCreateOrConnectWithoutCityInput, {nullable:true})
-    connectOrCreate?: InstanceType<typeof RegionCreateOrConnectWithoutCityInput>;
-    @Field(() => RegionUpsertWithoutCityInput, {nullable:true})
-    upsert?: InstanceType<typeof RegionUpsertWithoutCityInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:true})
-    connect?: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionUpdateWithoutCityInput, {nullable:true})
-    update?: InstanceType<typeof RegionUpdateWithoutCityInput>;
-}
-
-@InputType()
-export class RegionUpdateWithWhereUniqueWithoutCountryInput {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionUpdateWithoutCountryInput, {nullable:false})
-    data!: InstanceType<typeof RegionUpdateWithoutCountryInput>;
-}
-
-@InputType()
-export class RegionUpdateWithoutCityInput {
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CountryUpdateOneRequiredWithoutRegionInput, {nullable:true})
-    country?: InstanceType<typeof CountryUpdateOneRequiredWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUpdateWithoutCountryInput {
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUpdateManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUpdateManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUpdateInput {
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CountryUpdateOneRequiredWithoutRegionInput, {nullable:true})
-    country?: InstanceType<typeof CountryUpdateOneRequiredWithoutRegionInput>;
-    @Field(() => CityUpdateManyWithoutRegionInput, {nullable:true})
-    city?: InstanceType<typeof CityUpdateManyWithoutRegionInput>;
-}
-
-@InputType()
-export class RegionUpsertWithWhereUniqueWithoutCountryInput {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionUpdateWithoutCountryInput, {nullable:false})
-    update!: InstanceType<typeof RegionUpdateWithoutCountryInput>;
-    @Field(() => RegionCreateWithoutCountryInput, {nullable:false})
-    create!: InstanceType<typeof RegionCreateWithoutCountryInput>;
-}
-
-@InputType()
-export class RegionUpsertWithoutCityInput {
-    @Field(() => RegionUpdateWithoutCityInput, {nullable:false})
-    update!: InstanceType<typeof RegionUpdateWithoutCityInput>;
-    @Field(() => RegionCreateWithoutCityInput, {nullable:false})
-    create!: InstanceType<typeof RegionCreateWithoutCityInput>;
-}
-
-@InputType()
-export class RegionWhereUniqueInput {
-    @Field(() => Int, {nullable:true})
-    id?: number;
-    @Field(() => String, {nullable:true})
-    name?: string;
-}
-
-@InputType()
-export class RegionWhereInput {
-    @Field(() => [RegionWhereInput], {nullable:true})
-    AND?: Array<RegionWhereInput>;
-    @Field(() => [RegionWhereInput], {nullable:true})
-    OR?: Array<RegionWhereInput>;
-    @Field(() => [RegionWhereInput], {nullable:true})
-    NOT?: Array<RegionWhereInput>;
-    @Field(() => IntFilter, {nullable:true})
-    id?: InstanceType<typeof IntFilter>;
-    @Field(() => StringFilter, {nullable:true})
-    name?: InstanceType<typeof StringFilter>;
-    @Field(() => CountryRelationFilter, {nullable:true})
-    country?: InstanceType<typeof CountryRelationFilter>;
-    @Field(() => IntFilter, {nullable:true})
-    countryId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => CityListRelationFilter, {nullable:true})
-    city?: InstanceType<typeof CityListRelationFilter>;
-}
-
-@ObjectType()
-export class Region {
-    @Field(() => ID, {nullable:false})
-    id!: number;
-    @Field(() => String, {nullable:false})
-    name!: string;
-    @HideField()
-    country?: InstanceType<typeof Country>;
-    @Field(() => Int, {nullable:false})
-    countryId!: number;
-    @HideField()
-    createdAt!: Date;
-    @HideField()
-    updatedAt!: Date;
-    @HideField()
-    city?: Array<City>;
-    @Field(() => RegionCount, {nullable:false})
-    _count?: InstanceType<typeof RegionCount>;
-}
-
-@ArgsType()
-export class UpdateManyRegionArgs {
-    @Field(() => RegionUpdateManyMutationInput, {nullable:false})
-    data!: InstanceType<typeof RegionUpdateManyMutationInput>;
-    @Field(() => RegionWhereInput, {nullable:true})
-    where?: InstanceType<typeof RegionWhereInput>;
-}
-
-@ArgsType()
-export class UpdateOneRegionArgs {
-    @Field(() => RegionUpdateInput, {nullable:false})
-    data!: InstanceType<typeof RegionUpdateInput>;
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-}
-
-@ArgsType()
-export class UpsertOneRegionArgs {
-    @Field(() => RegionWhereUniqueInput, {nullable:false})
-    where!: InstanceType<typeof RegionWhereUniqueInput>;
-    @Field(() => RegionCreateInput, {nullable:false})
-    create!: InstanceType<typeof RegionCreateInput>;
-    @Field(() => RegionUpdateInput, {nullable:false})
-    update!: InstanceType<typeof RegionUpdateInput>;
 }
 
 @ObjectType()
@@ -7180,6 +6274,908 @@ export class UpsertOneSocialAccountArgs {
     create!: InstanceType<typeof SocialAccountCreateInput>;
     @Field(() => SocialAccountUpdateInput, {nullable:false})
     update!: InstanceType<typeof SocialAccountUpdateInput>;
+}
+
+@ObjectType()
+export class AggregateState {
+    @Field(() => StateCountAggregate, {nullable:true})
+    _count?: InstanceType<typeof StateCountAggregate>;
+    @Field(() => StateAvgAggregate, {nullable:true})
+    _avg?: InstanceType<typeof StateAvgAggregate>;
+    @Field(() => StateSumAggregate, {nullable:true})
+    _sum?: InstanceType<typeof StateSumAggregate>;
+    @Field(() => StateMinAggregate, {nullable:true})
+    _min?: InstanceType<typeof StateMinAggregate>;
+    @Field(() => StateMaxAggregate, {nullable:true})
+    _max?: InstanceType<typeof StateMaxAggregate>;
+}
+
+@ArgsType()
+export class CreateManyStateArgs {
+    @Field(() => [StateCreateManyInput], {nullable:false})
+    data!: Array<StateCreateManyInput>;
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
+}
+
+@ArgsType()
+export class CreateOneStateArgs {
+    @Field(() => StateCreateInput, {nullable:false})
+    data!: InstanceType<typeof StateCreateInput>;
+}
+
+@ArgsType()
+export class DeleteManyStateArgs {
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+}
+
+@ArgsType()
+export class DeleteOneStateArgs {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+}
+
+@ArgsType()
+export class FindFirstStateArgs {
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+    @Field(() => [StateOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<StateOrderByWithRelationInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:true})
+    cursor?: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => Int, {nullable:true})
+    take?: number;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+    @Field(() => [StateScalarFieldEnum], {nullable:true})
+    distinct?: Array<keyof typeof StateScalarFieldEnum>;
+}
+
+@ArgsType()
+export class FindManyStateArgs {
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+    @Field(() => [StateOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<StateOrderByWithRelationInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:true})
+    cursor?: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => Int, {nullable:true})
+    take?: number;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+    @Field(() => [StateScalarFieldEnum], {nullable:true})
+    distinct?: Array<keyof typeof StateScalarFieldEnum>;
+}
+
+@ArgsType()
+export class FindUniqueStateArgs {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+}
+
+@ArgsType()
+export class StateAggregateArgs {
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+    @Field(() => [StateOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<StateOrderByWithRelationInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:true})
+    cursor?: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => Int, {nullable:true})
+    take?: number;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+    @Field(() => StateCountAggregateInput, {nullable:true})
+    _count?: InstanceType<typeof StateCountAggregateInput>;
+    @Field(() => StateAvgAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof StateAvgAggregateInput>;
+    @Field(() => StateSumAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof StateSumAggregateInput>;
+    @Field(() => StateMinAggregateInput, {nullable:true})
+    _min?: InstanceType<typeof StateMinAggregateInput>;
+    @Field(() => StateMaxAggregateInput, {nullable:true})
+    _max?: InstanceType<typeof StateMaxAggregateInput>;
+}
+
+@InputType()
+export class StateAvgAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
+    @Field(() => Boolean, {nullable:true})
+    countryId?: true;
+}
+
+@ObjectType()
+export class StateAvgAggregate {
+    @Field(() => Float, {nullable:true})
+    id?: number;
+    @Field(() => Float, {nullable:true})
+    countryId?: number;
+}
+
+@InputType()
+export class StateAvgOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+}
+
+@InputType()
+export class StateCountAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
+    @Field(() => Boolean, {nullable:true})
+    name?: true;
+    @Field(() => Boolean, {nullable:true})
+    countryId?: true;
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    _all?: true;
+}
+
+@ObjectType()
+export class StateCountAggregate {
+    @Field(() => Int, {nullable:false})
+    id!: number;
+    @Field(() => Int, {nullable:false})
+    name!: number;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @HideField()
+    createdAt!: number;
+    @HideField()
+    updatedAt!: number;
+    @Field(() => Int, {nullable:false})
+    _all!: number;
+}
+
+@InputType()
+export class StateCountOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+}
+
+@ObjectType()
+export class StateCount {
+    @Field(() => Int, {nullable:false})
+    cities!: number;
+}
+
+@InputType()
+export class StateCreateManyCountryInputEnvelope {
+    @Field(() => [StateCreateManyCountryInput], {nullable:false})
+    data!: Array<StateCreateManyCountryInput>;
+    @Field(() => Boolean, {nullable:true})
+    skipDuplicates?: boolean;
+}
+
+@InputType()
+export class StateCreateManyCountryInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+}
+
+@InputType()
+export class StateCreateManyInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+}
+
+@InputType()
+export class StateCreateNestedManyWithoutCountryInput {
+    @Field(() => [StateCreateWithoutCountryInput], {nullable:true})
+    create?: Array<StateCreateWithoutCountryInput>;
+    @Field(() => [StateCreateOrConnectWithoutCountryInput], {nullable:true})
+    connectOrCreate?: Array<StateCreateOrConnectWithoutCountryInput>;
+    @Field(() => StateCreateManyCountryInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof StateCreateManyCountryInputEnvelope>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    connect?: Array<StateWhereUniqueInput>;
+}
+
+@InputType()
+export class StateCreateNestedOneWithoutCitiesInput {
+    @Field(() => StateCreateWithoutCitiesInput, {nullable:true})
+    create?: InstanceType<typeof StateCreateWithoutCitiesInput>;
+    @Field(() => StateCreateOrConnectWithoutCitiesInput, {nullable:true})
+    connectOrCreate?: InstanceType<typeof StateCreateOrConnectWithoutCitiesInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:true})
+    connect?: InstanceType<typeof StateWhereUniqueInput>;
+}
+
+@InputType()
+export class StateCreateOrConnectWithoutCitiesInput {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateCreateWithoutCitiesInput, {nullable:false})
+    create!: InstanceType<typeof StateCreateWithoutCitiesInput>;
+}
+
+@InputType()
+export class StateCreateOrConnectWithoutCountryInput {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateCreateWithoutCountryInput, {nullable:false})
+    create!: InstanceType<typeof StateCreateWithoutCountryInput>;
+}
+
+@InputType()
+export class StateCreateWithoutCitiesInput {
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => CountryCreateNestedOneWithoutStatesInput, {nullable:false})
+    country!: InstanceType<typeof CountryCreateNestedOneWithoutStatesInput>;
+}
+
+@InputType()
+export class StateCreateWithoutCountryInput {
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => CityCreateNestedManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityCreateNestedManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateCreateInput {
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => CountryCreateNestedOneWithoutStatesInput, {nullable:false})
+    country!: InstanceType<typeof CountryCreateNestedOneWithoutStatesInput>;
+    @Field(() => CityCreateNestedManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityCreateNestedManyWithoutStateInput>;
+}
+
+@ArgsType()
+export class StateGroupByArgs {
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+    @Field(() => [StateOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<StateOrderByWithAggregationInput>;
+    @Field(() => [StateScalarFieldEnum], {nullable:false})
+    by!: Array<keyof typeof StateScalarFieldEnum>;
+    @Field(() => StateScalarWhereWithAggregatesInput, {nullable:true})
+    having?: InstanceType<typeof StateScalarWhereWithAggregatesInput>;
+    @Field(() => Int, {nullable:true})
+    take?: number;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+    @Field(() => StateCountAggregateInput, {nullable:true})
+    _count?: InstanceType<typeof StateCountAggregateInput>;
+    @Field(() => StateAvgAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof StateAvgAggregateInput>;
+    @Field(() => StateSumAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof StateSumAggregateInput>;
+    @Field(() => StateMinAggregateInput, {nullable:true})
+    _min?: InstanceType<typeof StateMinAggregateInput>;
+    @Field(() => StateMaxAggregateInput, {nullable:true})
+    _max?: InstanceType<typeof StateMaxAggregateInput>;
+}
+
+@ObjectType()
+export class StateGroupBy {
+    @Field(() => Int, {nullable:false})
+    id!: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @HideField()
+    createdAt!: Date | string;
+    @HideField()
+    updatedAt!: Date | string;
+    @Field(() => StateCountAggregate, {nullable:true})
+    _count?: InstanceType<typeof StateCountAggregate>;
+    @Field(() => StateAvgAggregate, {nullable:true})
+    _avg?: InstanceType<typeof StateAvgAggregate>;
+    @Field(() => StateSumAggregate, {nullable:true})
+    _sum?: InstanceType<typeof StateSumAggregate>;
+    @Field(() => StateMinAggregate, {nullable:true})
+    _min?: InstanceType<typeof StateMinAggregate>;
+    @Field(() => StateMaxAggregate, {nullable:true})
+    _max?: InstanceType<typeof StateMaxAggregate>;
+}
+
+@InputType()
+export class StateListRelationFilter {
+    @Field(() => StateWhereInput, {nullable:true})
+    every?: InstanceType<typeof StateWhereInput>;
+    @Field(() => StateWhereInput, {nullable:true})
+    some?: InstanceType<typeof StateWhereInput>;
+    @Field(() => StateWhereInput, {nullable:true})
+    none?: InstanceType<typeof StateWhereInput>;
+}
+
+@InputType()
+export class StateMaxAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
+    @Field(() => Boolean, {nullable:true})
+    name?: true;
+    @Field(() => Boolean, {nullable:true})
+    countryId?: true;
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+}
+
+@ObjectType()
+export class StateMaxAggregate {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:true})
+    name?: string;
+    @Field(() => Int, {nullable:true})
+    countryId?: number;
+    @HideField()
+    createdAt?: Date | string;
+    @HideField()
+    updatedAt?: Date | string;
+}
+
+@InputType()
+export class StateMaxOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+}
+
+@InputType()
+export class StateMinAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
+    @Field(() => Boolean, {nullable:true})
+    name?: true;
+    @Field(() => Boolean, {nullable:true})
+    countryId?: true;
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+}
+
+@ObjectType()
+export class StateMinAggregate {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:true})
+    name?: string;
+    @Field(() => Int, {nullable:true})
+    countryId?: number;
+    @HideField()
+    createdAt?: Date | string;
+    @HideField()
+    updatedAt?: Date | string;
+}
+
+@InputType()
+export class StateMinOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+}
+
+@InputType()
+export class StateOrderByRelationAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    _count?: keyof typeof SortOrder;
+}
+
+@InputType()
+export class StateOrderByWithAggregationInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+    @Field(() => StateCountOrderByAggregateInput, {nullable:true})
+    _count?: InstanceType<typeof StateCountOrderByAggregateInput>;
+    @Field(() => StateAvgOrderByAggregateInput, {nullable:true})
+    _avg?: InstanceType<typeof StateAvgOrderByAggregateInput>;
+    @Field(() => StateMaxOrderByAggregateInput, {nullable:true})
+    _max?: InstanceType<typeof StateMaxOrderByAggregateInput>;
+    @Field(() => StateMinOrderByAggregateInput, {nullable:true})
+    _min?: InstanceType<typeof StateMinOrderByAggregateInput>;
+    @Field(() => StateSumOrderByAggregateInput, {nullable:true})
+    _sum?: InstanceType<typeof StateSumOrderByAggregateInput>;
+}
+
+@InputType()
+export class StateOrderByWithRelationInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    name?: keyof typeof SortOrder;
+    @Field(() => CountryOrderByWithRelationInput, {nullable:true})
+    country?: InstanceType<typeof CountryOrderByWithRelationInput>;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+    @Field(() => CityOrderByRelationAggregateInput, {nullable:true})
+    cities?: InstanceType<typeof CityOrderByRelationAggregateInput>;
+}
+
+@InputType()
+export class StateRelationFilter {
+    @Field(() => StateWhereInput, {nullable:true})
+    is?: InstanceType<typeof StateWhereInput>;
+    @Field(() => StateWhereInput, {nullable:true})
+    isNot?: InstanceType<typeof StateWhereInput>;
+}
+
+@InputType()
+export class StateScalarWhereWithAggregatesInput {
+    @Field(() => [StateScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<StateScalarWhereWithAggregatesInput>;
+    @Field(() => [StateScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<StateScalarWhereWithAggregatesInput>;
+    @Field(() => [StateScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<StateScalarWhereWithAggregatesInput>;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    name?: InstanceType<typeof StringWithAggregatesFilter>;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    countryId?: InstanceType<typeof IntWithAggregatesFilter>;
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+}
+
+@InputType()
+export class StateScalarWhereInput {
+    @Field(() => [StateScalarWhereInput], {nullable:true})
+    AND?: Array<StateScalarWhereInput>;
+    @Field(() => [StateScalarWhereInput], {nullable:true})
+    OR?: Array<StateScalarWhereInput>;
+    @Field(() => [StateScalarWhereInput], {nullable:true})
+    NOT?: Array<StateScalarWhereInput>;
+    @Field(() => IntFilter, {nullable:true})
+    id?: InstanceType<typeof IntFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    name?: InstanceType<typeof StringFilter>;
+    @Field(() => IntFilter, {nullable:true})
+    countryId?: InstanceType<typeof IntFilter>;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
+}
+
+@InputType()
+export class StateSumAggregateInput {
+    @Field(() => Boolean, {nullable:true})
+    id?: true;
+    @Field(() => Boolean, {nullable:true})
+    countryId?: true;
+}
+
+@ObjectType()
+export class StateSumAggregate {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => Int, {nullable:true})
+    countryId?: number;
+}
+
+@InputType()
+export class StateSumOrderByAggregateInput {
+    @Field(() => SortOrder, {nullable:true})
+    id?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    countryId?: keyof typeof SortOrder;
+}
+
+@InputType()
+export class StateUncheckedCreateNestedManyWithoutCountryInput {
+    @Field(() => [StateCreateWithoutCountryInput], {nullable:true})
+    create?: Array<StateCreateWithoutCountryInput>;
+    @Field(() => [StateCreateOrConnectWithoutCountryInput], {nullable:true})
+    connectOrCreate?: Array<StateCreateOrConnectWithoutCountryInput>;
+    @Field(() => StateCreateManyCountryInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof StateCreateManyCountryInputEnvelope>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    connect?: Array<StateWhereUniqueInput>;
+}
+
+@InputType()
+export class StateUncheckedCreateWithoutCitiesInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+}
+
+@InputType()
+export class StateUncheckedCreateWithoutCountryInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => CityUncheckedCreateNestedManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUncheckedCreateInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+    @Field(() => CityUncheckedCreateNestedManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateManyWithoutCountryInput {
+    @Field(() => [StateCreateWithoutCountryInput], {nullable:true})
+    create?: Array<StateCreateWithoutCountryInput>;
+    @Field(() => [StateCreateOrConnectWithoutCountryInput], {nullable:true})
+    connectOrCreate?: Array<StateCreateOrConnectWithoutCountryInput>;
+    @Field(() => [StateUpsertWithWhereUniqueWithoutCountryInput], {nullable:true})
+    upsert?: Array<StateUpsertWithWhereUniqueWithoutCountryInput>;
+    @Field(() => StateCreateManyCountryInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof StateCreateManyCountryInputEnvelope>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    set?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    disconnect?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    delete?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    connect?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateUpdateWithWhereUniqueWithoutCountryInput], {nullable:true})
+    update?: Array<StateUpdateWithWhereUniqueWithoutCountryInput>;
+    @Field(() => [StateUpdateManyWithWhereWithoutCountryInput], {nullable:true})
+    updateMany?: Array<StateUpdateManyWithWhereWithoutCountryInput>;
+    @Field(() => [StateScalarWhereInput], {nullable:true})
+    deleteMany?: Array<StateScalarWhereInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateManyWithoutStatesInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateManyInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateWithoutCitiesInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateWithoutCountryInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => CityUncheckedUpdateManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUncheckedUpdateManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUncheckedUpdateInput {
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => CityUncheckedUpdateManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUncheckedUpdateManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUpdateManyMutationInput {
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+
+@InputType()
+export class StateUpdateManyWithWhereWithoutCountryInput {
+    @Field(() => StateScalarWhereInput, {nullable:false})
+    where!: InstanceType<typeof StateScalarWhereInput>;
+    @Field(() => StateUpdateManyMutationInput, {nullable:false})
+    data!: InstanceType<typeof StateUpdateManyMutationInput>;
+}
+
+@InputType()
+export class StateUpdateManyWithoutCountryInput {
+    @Field(() => [StateCreateWithoutCountryInput], {nullable:true})
+    create?: Array<StateCreateWithoutCountryInput>;
+    @Field(() => [StateCreateOrConnectWithoutCountryInput], {nullable:true})
+    connectOrCreate?: Array<StateCreateOrConnectWithoutCountryInput>;
+    @Field(() => [StateUpsertWithWhereUniqueWithoutCountryInput], {nullable:true})
+    upsert?: Array<StateUpsertWithWhereUniqueWithoutCountryInput>;
+    @Field(() => StateCreateManyCountryInputEnvelope, {nullable:true})
+    createMany?: InstanceType<typeof StateCreateManyCountryInputEnvelope>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    set?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    disconnect?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    delete?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateWhereUniqueInput], {nullable:true})
+    connect?: Array<StateWhereUniqueInput>;
+    @Field(() => [StateUpdateWithWhereUniqueWithoutCountryInput], {nullable:true})
+    update?: Array<StateUpdateWithWhereUniqueWithoutCountryInput>;
+    @Field(() => [StateUpdateManyWithWhereWithoutCountryInput], {nullable:true})
+    updateMany?: Array<StateUpdateManyWithWhereWithoutCountryInput>;
+    @Field(() => [StateScalarWhereInput], {nullable:true})
+    deleteMany?: Array<StateScalarWhereInput>;
+}
+
+@InputType()
+export class StateUpdateOneRequiredWithoutCitiesInput {
+    @Field(() => StateCreateWithoutCitiesInput, {nullable:true})
+    create?: InstanceType<typeof StateCreateWithoutCitiesInput>;
+    @Field(() => StateCreateOrConnectWithoutCitiesInput, {nullable:true})
+    connectOrCreate?: InstanceType<typeof StateCreateOrConnectWithoutCitiesInput>;
+    @Field(() => StateUpsertWithoutCitiesInput, {nullable:true})
+    upsert?: InstanceType<typeof StateUpsertWithoutCitiesInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:true})
+    connect?: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateUpdateWithoutCitiesInput, {nullable:true})
+    update?: InstanceType<typeof StateUpdateWithoutCitiesInput>;
+}
+
+@InputType()
+export class StateUpdateWithWhereUniqueWithoutCountryInput {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateUpdateWithoutCountryInput, {nullable:false})
+    data!: InstanceType<typeof StateUpdateWithoutCountryInput>;
+}
+
+@InputType()
+export class StateUpdateWithoutCitiesInput {
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => CountryUpdateOneRequiredWithoutStatesInput, {nullable:true})
+    country?: InstanceType<typeof CountryUpdateOneRequiredWithoutStatesInput>;
+}
+
+@InputType()
+export class StateUpdateWithoutCountryInput {
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => CityUpdateManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUpdateManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUpdateInput {
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    @Field(() => CountryUpdateOneRequiredWithoutStatesInput, {nullable:true})
+    country?: InstanceType<typeof CountryUpdateOneRequiredWithoutStatesInput>;
+    @Field(() => CityUpdateManyWithoutStateInput, {nullable:true})
+    cities?: InstanceType<typeof CityUpdateManyWithoutStateInput>;
+}
+
+@InputType()
+export class StateUpsertWithWhereUniqueWithoutCountryInput {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateUpdateWithoutCountryInput, {nullable:false})
+    update!: InstanceType<typeof StateUpdateWithoutCountryInput>;
+    @Field(() => StateCreateWithoutCountryInput, {nullable:false})
+    create!: InstanceType<typeof StateCreateWithoutCountryInput>;
+}
+
+@InputType()
+export class StateUpsertWithoutCitiesInput {
+    @Field(() => StateUpdateWithoutCitiesInput, {nullable:false})
+    update!: InstanceType<typeof StateUpdateWithoutCitiesInput>;
+    @Field(() => StateCreateWithoutCitiesInput, {nullable:false})
+    create!: InstanceType<typeof StateCreateWithoutCitiesInput>;
+}
+
+@InputType()
+export class StateWhereUniqueInput {
+    @Field(() => Int, {nullable:true})
+    id?: number;
+}
+
+@InputType()
+export class StateWhereInput {
+    @Field(() => [StateWhereInput], {nullable:true})
+    AND?: Array<StateWhereInput>;
+    @Field(() => [StateWhereInput], {nullable:true})
+    OR?: Array<StateWhereInput>;
+    @Field(() => [StateWhereInput], {nullable:true})
+    NOT?: Array<StateWhereInput>;
+    @Field(() => IntFilter, {nullable:true})
+    id?: InstanceType<typeof IntFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    name?: InstanceType<typeof StringFilter>;
+    @Field(() => CountryRelationFilter, {nullable:true})
+    country?: InstanceType<typeof CountryRelationFilter>;
+    @Field(() => IntFilter, {nullable:true})
+    countryId?: InstanceType<typeof IntFilter>;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
+    @Field(() => CityListRelationFilter, {nullable:true})
+    cities?: InstanceType<typeof CityListRelationFilter>;
+}
+
+@ObjectType()
+export class State {
+    @Field(() => ID, {nullable:false})
+    id!: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
+    @HideField()
+    country?: InstanceType<typeof Country>;
+    @Field(() => Int, {nullable:false})
+    countryId!: number;
+    @HideField()
+    createdAt!: Date;
+    @HideField()
+    updatedAt!: Date;
+    @HideField()
+    cities?: Array<City>;
+    @Field(() => StateCount, {nullable:false})
+    _count?: InstanceType<typeof StateCount>;
+}
+
+@ArgsType()
+export class UpdateManyStateArgs {
+    @Field(() => StateUpdateManyMutationInput, {nullable:false})
+    data!: InstanceType<typeof StateUpdateManyMutationInput>;
+    @Field(() => StateWhereInput, {nullable:true})
+    where?: InstanceType<typeof StateWhereInput>;
+}
+
+@ArgsType()
+export class UpdateOneStateArgs {
+    @Field(() => StateUpdateInput, {nullable:false})
+    data!: InstanceType<typeof StateUpdateInput>;
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+}
+
+@ArgsType()
+export class UpsertOneStateArgs {
+    @Field(() => StateWhereUniqueInput, {nullable:false})
+    where!: InstanceType<typeof StateWhereUniqueInput>;
+    @Field(() => StateCreateInput, {nullable:false})
+    create!: InstanceType<typeof StateCreateInput>;
+    @Field(() => StateUpdateInput, {nullable:false})
+    update!: InstanceType<typeof StateUpdateInput>;
 }
 
 @ObjectType()
