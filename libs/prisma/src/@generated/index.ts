@@ -170,9 +170,9 @@ export class CityCountAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     stateId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -186,9 +186,9 @@ export class CityCountAggregate {
     name!: number;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -202,9 +202,9 @@ export class CityCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     stateId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -228,9 +228,9 @@ export class CityCreateManyStateInput {
     id?: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -242,9 +242,9 @@ export class CityCreateManyInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -290,11 +290,11 @@ export class CityCreateOrConnectWithoutStateInput {
 export class CityCreateWithoutReportsInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => StateCreateNestedOneWithoutCitiesInput, {nullable:false})
+    @HideField()
     state!: InstanceType<typeof StateCreateNestedOneWithoutCitiesInput>;
 }
 
@@ -302,11 +302,11 @@ export class CityCreateWithoutReportsInput {
 export class CityCreateWithoutStateInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportCreateNestedManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutCityInput>;
 }
 
@@ -314,13 +314,13 @@ export class CityCreateWithoutStateInput {
 export class CityCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => StateCreateNestedOneWithoutCitiesInput, {nullable:false})
+    @HideField()
     state!: InstanceType<typeof StateCreateNestedOneWithoutCitiesInput>;
-    @Field(() => ReportCreateNestedManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutCityInput>;
 }
 
@@ -358,9 +358,9 @@ export class CityGroupBy {
     name!: string;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => CityCountAggregate, {nullable:true})
     _count?: InstanceType<typeof CityCountAggregate>;
@@ -392,9 +392,9 @@ export class CityMaxAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     stateId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -406,9 +406,9 @@ export class CityMaxAggregate {
     name?: string;
     @Field(() => Int, {nullable:true})
     stateId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -420,9 +420,9 @@ export class CityMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     stateId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -434,9 +434,9 @@ export class CityMinAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     stateId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -448,9 +448,9 @@ export class CityMinAggregate {
     name?: string;
     @Field(() => Int, {nullable:true})
     stateId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -462,9 +462,9 @@ export class CityMinOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     stateId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -482,9 +482,9 @@ export class CityOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     stateId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => CityCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof CityCountOrderByAggregateInput>;
@@ -504,15 +504,15 @@ export class CityOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => StateOrderByWithRelationInput, {nullable:true})
+    @HideField()
     state?: InstanceType<typeof StateOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     stateId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => ReportOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportOrderByRelationAggregateInput>;
 }
 
@@ -538,9 +538,9 @@ export class CityScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     stateId?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -558,9 +558,9 @@ export class CityScalarWhereInput {
     name?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     stateId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
 
@@ -608,9 +608,9 @@ export class CityUncheckedCreateWithoutReportsInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -620,11 +620,11 @@ export class CityUncheckedCreateWithoutStateInput {
     id?: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportUncheckedCreateNestedManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutCityInput>;
 }
 
@@ -636,11 +636,11 @@ export class CityUncheckedCreateInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportUncheckedCreateNestedManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutCityInput>;
 }
 
@@ -650,9 +650,9 @@ export class CityUncheckedUpdateManyWithoutCitiesInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -690,9 +690,9 @@ export class CityUncheckedUpdateManyInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -704,9 +704,9 @@ export class CityUncheckedUpdateWithoutReportsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -716,11 +716,11 @@ export class CityUncheckedUpdateWithoutStateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUncheckedUpdateManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedUpdateManyWithoutCityInput>;
 }
 
@@ -732,11 +732,11 @@ export class CityUncheckedUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     stateId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUncheckedUpdateManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedUpdateManyWithoutCityInput>;
 }
 
@@ -744,9 +744,9 @@ export class CityUncheckedUpdateInput {
 export class CityUpdateManyMutationInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -814,11 +814,11 @@ export class CityUpdateWithWhereUniqueWithoutStateInput {
 export class CityUpdateWithoutReportsInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => StateUpdateOneRequiredWithoutCitiesInput, {nullable:true})
+    @HideField()
     state?: InstanceType<typeof StateUpdateOneRequiredWithoutCitiesInput>;
 }
 
@@ -826,11 +826,11 @@ export class CityUpdateWithoutReportsInput {
 export class CityUpdateWithoutStateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUpdateManyWithoutCityInput>;
 }
 
@@ -838,13 +838,13 @@ export class CityUpdateWithoutStateInput {
 export class CityUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => StateUpdateOneRequiredWithoutCitiesInput, {nullable:true})
+    @HideField()
     state?: InstanceType<typeof StateUpdateOneRequiredWithoutCitiesInput>;
-    @Field(() => ReportUpdateManyWithoutCityInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUpdateManyWithoutCityInput>;
 }
 
@@ -884,15 +884,15 @@ export class CityWhereInput {
     id?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
-    @Field(() => StateRelationFilter, {nullable:true})
+    @HideField()
     state?: InstanceType<typeof StateRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
     stateId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => ReportListRelationFilter, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportListRelationFilter>;
 }
 
@@ -902,15 +902,15 @@ export class City {
     id!: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @HideField()
+    @Field(() => State, {nullable:false})
     state?: InstanceType<typeof State>;
     @Field(() => Int, {nullable:false})
     stateId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [Report], {nullable:true})
     reports?: Array<Report>;
     @Field(() => CityCount, {nullable:false})
     _count?: InstanceType<typeof CityCount>;
@@ -1070,9 +1070,9 @@ export class CountryCountAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     code?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -1086,9 +1086,9 @@ export class CountryCountAggregate {
     name!: number;
     @Field(() => Int, {nullable:false})
     code!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -1102,9 +1102,9 @@ export class CountryCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     code?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -1122,9 +1122,9 @@ export class CountryCreateManyInput {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -1152,9 +1152,9 @@ export class CountryCreateWithoutStatesInput {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -1164,11 +1164,11 @@ export class CountryCreateInput {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => StateCreateNestedManyWithoutCountryInput, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateCreateNestedManyWithoutCountryInput>;
 }
 
@@ -1206,9 +1206,9 @@ export class CountryGroupBy {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => CountryCountAggregate, {nullable:true})
     _count?: InstanceType<typeof CountryCountAggregate>;
@@ -1230,9 +1230,9 @@ export class CountryMaxAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     code?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -1244,9 +1244,9 @@ export class CountryMaxAggregate {
     name?: string;
     @Field(() => String, {nullable:true})
     code?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -1258,9 +1258,9 @@ export class CountryMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     code?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -1272,9 +1272,9 @@ export class CountryMinAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     code?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -1286,9 +1286,9 @@ export class CountryMinAggregate {
     name?: string;
     @Field(() => String, {nullable:true})
     code?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -1300,9 +1300,9 @@ export class CountryMinOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     code?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -1314,9 +1314,9 @@ export class CountryOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     code?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => CountryCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof CountryCountOrderByAggregateInput>;
@@ -1338,11 +1338,11 @@ export class CountryOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     code?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => StateOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateOrderByRelationAggregateInput>;
 }
 
@@ -1368,9 +1368,9 @@ export class CountryScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     code?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -1400,9 +1400,9 @@ export class CountryUncheckedCreateWithoutStatesInput {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -1414,11 +1414,11 @@ export class CountryUncheckedCreateInput {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => StateUncheckedCreateNestedManyWithoutCountryInput, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateUncheckedCreateNestedManyWithoutCountryInput>;
 }
 
@@ -1430,9 +1430,9 @@ export class CountryUncheckedUpdateManyInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -1444,9 +1444,9 @@ export class CountryUncheckedUpdateWithoutStatesInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -1458,11 +1458,11 @@ export class CountryUncheckedUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => StateUncheckedUpdateManyWithoutCountryInput, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateUncheckedUpdateManyWithoutCountryInput>;
 }
 
@@ -1472,9 +1472,9 @@ export class CountryUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -1498,9 +1498,9 @@ export class CountryUpdateWithoutStatesInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -1510,11 +1510,11 @@ export class CountryUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     code?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => StateUpdateManyWithoutCountryInput, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateUpdateManyWithoutCountryInput>;
 }
 
@@ -1550,11 +1550,11 @@ export class CountryWhereInput {
     name?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     code?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => StateListRelationFilter, {nullable:true})
+    @HideField()
     states?: InstanceType<typeof StateListRelationFilter>;
 }
 
@@ -1566,11 +1566,11 @@ export class Country {
     name!: string;
     @Field(() => String, {nullable:false})
     code!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [State], {nullable:true})
     states?: Array<State>;
     @Field(() => CountryCount, {nullable:false})
     _count?: InstanceType<typeof CountryCount>;
@@ -1794,9 +1794,9 @@ export class MediaCountAggregateInput {
     path?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -1810,9 +1810,9 @@ export class MediaCountAggregate {
     path!: number;
     @Field(() => Int, {nullable:false})
     name!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -1826,9 +1826,9 @@ export class MediaCountOrderByAggregateInput {
     path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -1846,9 +1846,9 @@ export class MediaCreateManyInput {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -1876,9 +1876,9 @@ export class MediaCreateWithoutReportMediaInput {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -1888,11 +1888,11 @@ export class MediaCreateInput {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportMediaCreateNestedManyWithoutMediaInput, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaCreateNestedManyWithoutMediaInput>;
 }
 
@@ -1930,9 +1930,9 @@ export class MediaGroupBy {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => MediaCountAggregate, {nullable:true})
     _count?: InstanceType<typeof MediaCountAggregate>;
@@ -1954,9 +1954,9 @@ export class MediaMaxAggregateInput {
     path?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -1968,9 +1968,9 @@ export class MediaMaxAggregate {
     path?: string;
     @Field(() => String, {nullable:true})
     name?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -1982,9 +1982,9 @@ export class MediaMaxOrderByAggregateInput {
     path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -1996,9 +1996,9 @@ export class MediaMinAggregateInput {
     path?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -2010,9 +2010,9 @@ export class MediaMinAggregate {
     path?: string;
     @Field(() => String, {nullable:true})
     name?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -2024,9 +2024,9 @@ export class MediaMinOrderByAggregateInput {
     path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -2038,9 +2038,9 @@ export class MediaOrderByWithAggregationInput {
     path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => MediaCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof MediaCountOrderByAggregateInput>;
@@ -2062,11 +2062,11 @@ export class MediaOrderByWithRelationInput {
     path?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => ReportMediaOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaOrderByRelationAggregateInput>;
 }
 
@@ -2092,9 +2092,9 @@ export class MediaScalarWhereWithAggregatesInput {
     path?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     name?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -2124,9 +2124,9 @@ export class MediaUncheckedCreateWithoutReportMediaInput {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -2138,11 +2138,11 @@ export class MediaUncheckedCreateInput {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportMediaUncheckedCreateNestedManyWithoutMediaInput, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaUncheckedCreateNestedManyWithoutMediaInput>;
 }
 
@@ -2154,9 +2154,9 @@ export class MediaUncheckedUpdateManyInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -2168,9 +2168,9 @@ export class MediaUncheckedUpdateWithoutReportMediaInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -2182,11 +2182,11 @@ export class MediaUncheckedUpdateInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUncheckedUpdateManyWithoutMediaInput, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaUncheckedUpdateManyWithoutMediaInput>;
 }
 
@@ -2196,9 +2196,9 @@ export class MediaUpdateManyMutationInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -2222,9 +2222,9 @@ export class MediaUpdateWithoutReportMediaInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -2234,11 +2234,11 @@ export class MediaUpdateInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUpdateManyWithoutMediaInput, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaUpdateManyWithoutMediaInput>;
 }
 
@@ -2270,11 +2270,11 @@ export class MediaWhereInput {
     path?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => ReportMediaListRelationFilter, {nullable:true})
+    @HideField()
     reportMedia?: InstanceType<typeof ReportMediaListRelationFilter>;
 }
 
@@ -2286,11 +2286,11 @@ export class Media {
     path!: string;
     @Field(() => String, {nullable:false})
     name!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [ReportMedia], {nullable:true})
     reportMedia?: Array<ReportMedia>;
     @Field(() => MediaCount, {nullable:false})
     _count?: InstanceType<typeof MediaCount>;
@@ -3192,9 +3192,9 @@ export class ReportCountAggregateInput {
     title?: true;
     @Field(() => Boolean, {nullable:true})
     content?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
@@ -3212,9 +3212,9 @@ export class ReportCountAggregate {
     title!: number;
     @Field(() => Int, {nullable:false})
     content!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     userId!: number;
@@ -3232,9 +3232,9 @@ export class ReportCountOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     content?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
@@ -3266,9 +3266,9 @@ export class ReportCreateManyCityInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3290,9 +3290,9 @@ export class ReportCreateManyUserInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     cityId?: number;
@@ -3306,9 +3306,9 @@ export class ReportCreateManyInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3398,15 +3398,15 @@ export class ReportCreateWithoutCityInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => UserCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserCreateNestedOneWithoutReportsInput>;
-    @Field(() => TagCreateNestedManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagCreateNestedManyWithoutReportsInput>;
-    @Field(() => ReportMediaCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaCreateNestedManyWithoutReportInput>;
 }
 
@@ -3416,15 +3416,15 @@ export class ReportCreateWithoutMediaInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => UserCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserCreateNestedOneWithoutReportsInput>;
-    @Field(() => CityCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityCreateNestedOneWithoutReportsInput>;
-    @Field(() => TagCreateNestedManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagCreateNestedManyWithoutReportsInput>;
 }
 
@@ -3434,15 +3434,15 @@ export class ReportCreateWithoutTagsInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => UserCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserCreateNestedOneWithoutReportsInput>;
-    @Field(() => CityCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityCreateNestedOneWithoutReportsInput>;
-    @Field(() => ReportMediaCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaCreateNestedManyWithoutReportInput>;
 }
 
@@ -3452,15 +3452,15 @@ export class ReportCreateWithoutUserInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CityCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityCreateNestedOneWithoutReportsInput>;
-    @Field(() => TagCreateNestedManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagCreateNestedManyWithoutReportsInput>;
-    @Field(() => ReportMediaCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaCreateNestedManyWithoutReportInput>;
 }
 
@@ -3470,17 +3470,17 @@ export class ReportCreateInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => UserCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserCreateNestedOneWithoutReportsInput>;
-    @Field(() => CityCreateNestedOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityCreateNestedOneWithoutReportsInput>;
-    @Field(() => TagCreateNestedManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagCreateNestedManyWithoutReportsInput>;
-    @Field(() => ReportMediaCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaCreateNestedManyWithoutReportInput>;
 }
 
@@ -3518,9 +3518,9 @@ export class ReportGroupBy {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3556,9 +3556,9 @@ export class ReportMaxAggregateInput {
     title?: true;
     @Field(() => Boolean, {nullable:true})
     content?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
@@ -3574,9 +3574,9 @@ export class ReportMaxAggregate {
     title?: string;
     @Field(() => String, {nullable:true})
     content?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3592,9 +3592,9 @@ export class ReportMaxOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     content?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
@@ -3610,9 +3610,9 @@ export class ReportMinAggregateInput {
     title?: true;
     @Field(() => Boolean, {nullable:true})
     content?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
@@ -3628,9 +3628,9 @@ export class ReportMinAggregate {
     title?: string;
     @Field(() => String, {nullable:true})
     content?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3646,9 +3646,9 @@ export class ReportMinOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     content?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
@@ -3670,9 +3670,9 @@ export class ReportOrderByWithAggregationInput {
     title?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     content?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
@@ -3698,21 +3698,21 @@ export class ReportOrderByWithRelationInput {
     title?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     content?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => CityOrderByWithRelationInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     cityId?: keyof typeof SortOrder;
-    @Field(() => TagOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagOrderByRelationAggregateInput>;
-    @Field(() => ReportMediaOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaOrderByRelationAggregateInput>;
 }
 
@@ -3738,9 +3738,9 @@ export class ReportScalarWhereWithAggregatesInput {
     title?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     content?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
     userId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
@@ -3762,9 +3762,9 @@ export class ReportScalarWhereInput {
     title?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     content?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     @Field(() => IntNullableFilter, {nullable:true})
     userId?: InstanceType<typeof IntNullableFilter>;
@@ -3834,13 +3834,13 @@ export class ReportUncheckedCreateWithoutCityInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
-    @Field(() => ReportMediaUncheckedCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedCreateNestedManyWithoutReportInput>;
 }
 
@@ -3852,9 +3852,9 @@ export class ReportUncheckedCreateWithoutMediaInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
@@ -3870,15 +3870,15 @@ export class ReportUncheckedCreateWithoutTagsInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
     @Field(() => Int, {nullable:true})
     cityId?: number;
-    @Field(() => ReportMediaUncheckedCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedCreateNestedManyWithoutReportInput>;
 }
 
@@ -3890,13 +3890,13 @@ export class ReportUncheckedCreateWithoutUserInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     cityId?: number;
-    @Field(() => ReportMediaUncheckedCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedCreateNestedManyWithoutReportInput>;
 }
 
@@ -3908,15 +3908,15 @@ export class ReportUncheckedCreateInput {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     userId?: number;
     @Field(() => Int, {nullable:true})
     cityId?: number;
-    @Field(() => ReportMediaUncheckedCreateNestedManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedCreateNestedManyWithoutReportInput>;
 }
 
@@ -3954,9 +3954,9 @@ export class ReportUncheckedUpdateManyWithoutReportsInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     cityId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -3996,9 +3996,9 @@ export class ReportUncheckedUpdateManyInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -4014,13 +4014,13 @@ export class ReportUncheckedUpdateWithoutCityInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUncheckedUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedUpdateManyWithoutReportInput>;
 }
 
@@ -4032,9 +4032,9 @@ export class ReportUncheckedUpdateWithoutMediaInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -4050,15 +4050,15 @@ export class ReportUncheckedUpdateWithoutTagsInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     cityId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUncheckedUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedUpdateManyWithoutReportInput>;
 }
 
@@ -4070,13 +4070,13 @@ export class ReportUncheckedUpdateWithoutUserInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     cityId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUncheckedUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedUpdateManyWithoutReportInput>;
 }
 
@@ -4088,15 +4088,15 @@ export class ReportUncheckedUpdateInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
     cityId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    @Field(() => ReportMediaUncheckedUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUncheckedUpdateManyWithoutReportInput>;
 }
 
@@ -4106,9 +4106,9 @@ export class ReportUpdateManyMutationInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -4256,15 +4256,15 @@ export class ReportUpdateWithoutCityInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => UserUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserUpdateOneWithoutReportsInput>;
-    @Field(() => TagUpdateManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagUpdateManyWithoutReportsInput>;
-    @Field(() => ReportMediaUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUpdateManyWithoutReportInput>;
 }
 
@@ -4274,15 +4274,15 @@ export class ReportUpdateWithoutMediaInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => UserUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserUpdateOneWithoutReportsInput>;
-    @Field(() => CityUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityUpdateOneWithoutReportsInput>;
-    @Field(() => TagUpdateManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagUpdateManyWithoutReportsInput>;
 }
 
@@ -4292,15 +4292,15 @@ export class ReportUpdateWithoutTagsInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => UserUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserUpdateOneWithoutReportsInput>;
-    @Field(() => CityUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityUpdateOneWithoutReportsInput>;
-    @Field(() => ReportMediaUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUpdateManyWithoutReportInput>;
 }
 
@@ -4310,15 +4310,15 @@ export class ReportUpdateWithoutUserInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityUpdateOneWithoutReportsInput>;
-    @Field(() => TagUpdateManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagUpdateManyWithoutReportsInput>;
-    @Field(() => ReportMediaUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUpdateManyWithoutReportInput>;
 }
 
@@ -4328,17 +4328,17 @@ export class ReportUpdateInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => UserUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserUpdateOneWithoutReportsInput>;
-    @Field(() => CityUpdateOneWithoutReportsInput, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityUpdateOneWithoutReportsInput>;
-    @Field(() => TagUpdateManyWithoutReportsInput, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagUpdateManyWithoutReportsInput>;
-    @Field(() => ReportMediaUpdateManyWithoutReportInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaUpdateManyWithoutReportInput>;
 }
 
@@ -4400,21 +4400,21 @@ export class ReportWhereInput {
     title?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     content?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => UserRelationFilter, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserRelationFilter>;
     @Field(() => IntNullableFilter, {nullable:true})
     userId?: InstanceType<typeof IntNullableFilter>;
-    @Field(() => CityRelationFilter, {nullable:true})
+    @HideField()
     city?: InstanceType<typeof CityRelationFilter>;
     @Field(() => IntNullableFilter, {nullable:true})
     cityId?: InstanceType<typeof IntNullableFilter>;
-    @Field(() => TagListRelationFilter, {nullable:true})
+    @HideField()
     tags?: InstanceType<typeof TagListRelationFilter>;
-    @Field(() => ReportMediaListRelationFilter, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof ReportMediaListRelationFilter>;
 }
 
@@ -4426,21 +4426,21 @@ export class Report {
     title!: string;
     @Field(() => String, {nullable:false})
     content!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => User, {nullable:true})
     user?: InstanceType<typeof User> | null;
     @Field(() => Int, {nullable:true})
     userId!: number | null;
-    @HideField()
+    @Field(() => City, {nullable:true})
     city?: InstanceType<typeof City> | null;
     @Field(() => Int, {nullable:true})
     cityId!: number | null;
-    @HideField()
+    @Field(() => [Tag], {nullable:true})
     tags?: Array<Tag>;
-    @HideField()
+    @Field(() => [ReportMedia], {nullable:true})
     media?: Array<ReportMedia>;
     @Field(() => ReportCount, {nullable:false})
     _count?: InstanceType<typeof ReportCount>;
@@ -4608,9 +4608,9 @@ export class ReportMediaAvgOrderByAggregateInput {
 export class ReportMediaCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     reportId?: true;
@@ -4624,9 +4624,9 @@ export class ReportMediaCountAggregateInput {
 export class ReportMediaCountAggregate {
     @Field(() => Int, {nullable:false})
     id!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -4640,9 +4640,9 @@ export class ReportMediaCountAggregate {
 export class ReportMediaCountOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     reportId?: keyof typeof SortOrder;
@@ -4662,9 +4662,9 @@ export class ReportMediaCreateManyMediaInputEnvelope {
 export class ReportMediaCreateManyMediaInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -4682,9 +4682,9 @@ export class ReportMediaCreateManyReportInputEnvelope {
 export class ReportMediaCreateManyReportInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     mediaId!: number;
@@ -4694,9 +4694,9 @@ export class ReportMediaCreateManyReportInput {
 export class ReportMediaCreateManyInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -4746,33 +4746,33 @@ export class ReportMediaCreateOrConnectWithoutReportInput {
 
 @InputType()
 export class ReportMediaCreateWithoutMediaInput {
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportCreateNestedOneWithoutMediaInput, {nullable:false})
+    @HideField()
     report!: InstanceType<typeof ReportCreateNestedOneWithoutMediaInput>;
 }
 
 @InputType()
 export class ReportMediaCreateWithoutReportInput {
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => MediaCreateNestedOneWithoutReportMediaInput, {nullable:false})
+    @HideField()
     media!: InstanceType<typeof MediaCreateNestedOneWithoutReportMediaInput>;
 }
 
 @InputType()
 export class ReportMediaCreateInput {
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportCreateNestedOneWithoutMediaInput, {nullable:false})
+    @HideField()
     report!: InstanceType<typeof ReportCreateNestedOneWithoutMediaInput>;
-    @Field(() => MediaCreateNestedOneWithoutReportMediaInput, {nullable:false})
+    @HideField()
     media!: InstanceType<typeof MediaCreateNestedOneWithoutReportMediaInput>;
 }
 
@@ -4806,9 +4806,9 @@ export class ReportMediaGroupByArgs {
 export class ReportMediaGroupBy {
     @Field(() => Int, {nullable:false})
     id!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -4840,9 +4840,9 @@ export class ReportMediaListRelationFilter {
 export class ReportMediaMaxAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     reportId?: true;
@@ -4854,9 +4854,9 @@ export class ReportMediaMaxAggregateInput {
 export class ReportMediaMaxAggregate {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     reportId?: number;
@@ -4868,9 +4868,9 @@ export class ReportMediaMaxAggregate {
 export class ReportMediaMaxOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     reportId?: keyof typeof SortOrder;
@@ -4882,9 +4882,9 @@ export class ReportMediaMaxOrderByAggregateInput {
 export class ReportMediaMinAggregateInput {
     @Field(() => Boolean, {nullable:true})
     id?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     reportId?: true;
@@ -4896,9 +4896,9 @@ export class ReportMediaMinAggregateInput {
 export class ReportMediaMinAggregate {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:true})
     reportId?: number;
@@ -4910,9 +4910,9 @@ export class ReportMediaMinAggregate {
 export class ReportMediaMinOrderByAggregateInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     reportId?: keyof typeof SortOrder;
@@ -4930,9 +4930,9 @@ export class ReportMediaOrderByRelationAggregateInput {
 export class ReportMediaOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     reportId?: keyof typeof SortOrder;
@@ -4954,15 +4954,15 @@ export class ReportMediaOrderByWithAggregationInput {
 export class ReportMediaOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => ReportOrderByWithRelationInput, {nullable:true})
+    @HideField()
     report?: InstanceType<typeof ReportOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     reportId?: keyof typeof SortOrder;
-    @Field(() => MediaOrderByWithRelationInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof MediaOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     mediaId?: keyof typeof SortOrder;
@@ -4978,9 +4978,9 @@ export class ReportMediaScalarWhereWithAggregatesInput {
     NOT?: Array<ReportMediaScalarWhereWithAggregatesInput>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     id?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     reportId?: InstanceType<typeof IntWithAggregatesFilter>;
@@ -4998,9 +4998,9 @@ export class ReportMediaScalarWhereInput {
     NOT?: Array<ReportMediaScalarWhereInput>;
     @Field(() => IntFilter, {nullable:true})
     id?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     @Field(() => IntFilter, {nullable:true})
     reportId?: InstanceType<typeof IntFilter>;
@@ -5066,9 +5066,9 @@ export class ReportMediaUncheckedCreateNestedManyWithoutReportInput {
 export class ReportMediaUncheckedCreateWithoutMediaInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -5078,9 +5078,9 @@ export class ReportMediaUncheckedCreateWithoutMediaInput {
 export class ReportMediaUncheckedCreateWithoutReportInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     mediaId!: number;
@@ -5090,9 +5090,9 @@ export class ReportMediaUncheckedCreateWithoutReportInput {
 export class ReportMediaUncheckedCreateInput {
     @Field(() => Int, {nullable:true})
     id?: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
     @Field(() => Int, {nullable:false})
     reportId!: number;
@@ -5130,9 +5130,9 @@ export class ReportMediaUncheckedUpdateManyWithoutMediaInput {
 export class ReportMediaUncheckedUpdateManyWithoutReportMediaInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     reportId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5168,9 +5168,9 @@ export class ReportMediaUncheckedUpdateManyWithoutReportInput {
 export class ReportMediaUncheckedUpdateManyInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     reportId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5182,9 +5182,9 @@ export class ReportMediaUncheckedUpdateManyInput {
 export class ReportMediaUncheckedUpdateWithoutMediaInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     reportId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5194,9 +5194,9 @@ export class ReportMediaUncheckedUpdateWithoutMediaInput {
 export class ReportMediaUncheckedUpdateWithoutReportInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     mediaId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5206,9 +5206,9 @@ export class ReportMediaUncheckedUpdateWithoutReportInput {
 export class ReportMediaUncheckedUpdateInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     reportId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5218,9 +5218,9 @@ export class ReportMediaUncheckedUpdateInput {
 
 @InputType()
 export class ReportMediaUpdateManyMutationInput {
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -5310,33 +5310,33 @@ export class ReportMediaUpdateWithWhereUniqueWithoutReportInput {
 
 @InputType()
 export class ReportMediaUpdateWithoutMediaInput {
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateOneRequiredWithoutMediaInput, {nullable:true})
+    @HideField()
     report?: InstanceType<typeof ReportUpdateOneRequiredWithoutMediaInput>;
 }
 
 @InputType()
 export class ReportMediaUpdateWithoutReportInput {
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => MediaUpdateOneRequiredWithoutReportMediaInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof MediaUpdateOneRequiredWithoutReportMediaInput>;
 }
 
 @InputType()
 export class ReportMediaUpdateInput {
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateOneRequiredWithoutMediaInput, {nullable:true})
+    @HideField()
     report?: InstanceType<typeof ReportUpdateOneRequiredWithoutMediaInput>;
-    @Field(() => MediaUpdateOneRequiredWithoutReportMediaInput, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof MediaUpdateOneRequiredWithoutReportMediaInput>;
 }
 
@@ -5376,15 +5376,15 @@ export class ReportMediaWhereInput {
     NOT?: Array<ReportMediaWhereInput>;
     @Field(() => IntFilter, {nullable:true})
     id?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => ReportRelationFilter, {nullable:true})
+    @HideField()
     report?: InstanceType<typeof ReportRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
     reportId?: InstanceType<typeof IntFilter>;
-    @Field(() => MediaRelationFilter, {nullable:true})
+    @HideField()
     media?: InstanceType<typeof MediaRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
     mediaId?: InstanceType<typeof IntFilter>;
@@ -5394,15 +5394,15 @@ export class ReportMediaWhereInput {
 export class ReportMedia {
     @Field(() => ID, {nullable:false})
     id!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => Report, {nullable:false})
     report?: InstanceType<typeof Report>;
     @Field(() => Int, {nullable:false})
     reportId!: number;
-    @HideField()
+    @Field(() => Media, {nullable:false})
     media?: InstanceType<typeof Media>;
     @Field(() => Int, {nullable:false})
     mediaId!: number;
@@ -5576,9 +5576,9 @@ export class SocialAccountCountAggregateInput {
     providerId?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -5594,9 +5594,9 @@ export class SocialAccountCountAggregate {
     providerId!: number;
     @Field(() => Int, {nullable:false})
     userId!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -5612,9 +5612,9 @@ export class SocialAccountCountOrderByAggregateInput {
     providerId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -5634,9 +5634,9 @@ export class SocialAccountCreateManyUserInput {
     provider!: bigint | number;
     @Field(() => String, {nullable:false})
     providerId!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -5650,9 +5650,9 @@ export class SocialAccountCreateManyInput {
     providerId!: string;
     @Field(() => Int, {nullable:false})
     userId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -5682,9 +5682,9 @@ export class SocialAccountCreateWithoutUserInput {
     provider!: bigint | number;
     @Field(() => String, {nullable:false})
     providerId!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -5694,11 +5694,11 @@ export class SocialAccountCreateInput {
     provider!: bigint | number;
     @Field(() => String, {nullable:false})
     providerId!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => UserCreateNestedOneWithoutSocialAccountInput, {nullable:false})
+    @HideField()
     user!: InstanceType<typeof UserCreateNestedOneWithoutSocialAccountInput>;
 }
 
@@ -5738,9 +5738,9 @@ export class SocialAccountGroupBy {
     providerId!: string;
     @Field(() => Int, {nullable:false})
     userId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => SocialAccountCountAggregate, {nullable:true})
     _count?: InstanceType<typeof SocialAccountCountAggregate>;
@@ -5774,9 +5774,9 @@ export class SocialAccountMaxAggregateInput {
     providerId?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -5790,9 +5790,9 @@ export class SocialAccountMaxAggregate {
     providerId?: string;
     @Field(() => Int, {nullable:true})
     userId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -5806,9 +5806,9 @@ export class SocialAccountMaxOrderByAggregateInput {
     providerId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -5822,9 +5822,9 @@ export class SocialAccountMinAggregateInput {
     providerId?: true;
     @Field(() => Boolean, {nullable:true})
     userId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -5838,9 +5838,9 @@ export class SocialAccountMinAggregate {
     providerId?: string;
     @Field(() => Int, {nullable:true})
     userId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -5854,9 +5854,9 @@ export class SocialAccountMinOrderByAggregateInput {
     providerId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -5876,9 +5876,9 @@ export class SocialAccountOrderByWithAggregationInput {
     providerId?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => SocialAccountCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof SocialAccountCountOrderByAggregateInput>;
@@ -5900,13 +5900,13 @@ export class SocialAccountOrderByWithRelationInput {
     provider?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     providerId?: keyof typeof SortOrder;
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -5926,9 +5926,9 @@ export class SocialAccountScalarWhereWithAggregatesInput {
     providerId?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     userId?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -5948,9 +5948,9 @@ export class SocialAccountScalarWhereInput {
     providerId?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     userId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
 
@@ -6004,9 +6004,9 @@ export class SocialAccountUncheckedCreateWithoutUserInput {
     provider!: bigint | number;
     @Field(() => String, {nullable:false})
     providerId!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -6020,9 +6020,9 @@ export class SocialAccountUncheckedCreateInput {
     providerId!: string;
     @Field(() => Int, {nullable:false})
     userId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -6034,9 +6034,9 @@ export class SocialAccountUncheckedUpdateManyWithoutSocialAccountInput {
     provider?: InstanceType<typeof BigIntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6076,9 +6076,9 @@ export class SocialAccountUncheckedUpdateManyInput {
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6090,9 +6090,9 @@ export class SocialAccountUncheckedUpdateWithoutUserInput {
     provider?: InstanceType<typeof BigIntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6106,9 +6106,9 @@ export class SocialAccountUncheckedUpdateInput {
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     userId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6118,9 +6118,9 @@ export class SocialAccountUpdateManyMutationInput {
     provider?: InstanceType<typeof BigIntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6172,9 +6172,9 @@ export class SocialAccountUpdateWithoutUserInput {
     provider?: InstanceType<typeof BigIntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6184,11 +6184,11 @@ export class SocialAccountUpdateInput {
     provider?: InstanceType<typeof BigIntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     providerId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => UserUpdateOneRequiredWithoutSocialAccountInput, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutSocialAccountInput>;
 }
 
@@ -6222,13 +6222,13 @@ export class SocialAccountWhereInput {
     provider?: InstanceType<typeof BigIntFilter>;
     @Field(() => StringFilter, {nullable:true})
     providerId?: InstanceType<typeof StringFilter>;
-    @Field(() => UserRelationFilter, {nullable:true})
+    @HideField()
     user?: InstanceType<typeof UserRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
     userId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
 
@@ -6240,13 +6240,13 @@ export class SocialAccount {
     provider!: bigint;
     @Field(() => String, {nullable:false})
     providerId!: string;
-    @HideField()
+    @Field(() => User, {nullable:false})
     user?: InstanceType<typeof User>;
     @Field(() => Int, {nullable:false})
     userId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
 }
 
@@ -6410,9 +6410,9 @@ export class StateCountAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     countryId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -6426,9 +6426,9 @@ export class StateCountAggregate {
     name!: number;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -6442,9 +6442,9 @@ export class StateCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -6468,9 +6468,9 @@ export class StateCreateManyCountryInput {
     id?: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -6482,9 +6482,9 @@ export class StateCreateManyInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -6530,11 +6530,11 @@ export class StateCreateOrConnectWithoutCountryInput {
 export class StateCreateWithoutCitiesInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CountryCreateNestedOneWithoutStatesInput, {nullable:false})
+    @HideField()
     country!: InstanceType<typeof CountryCreateNestedOneWithoutStatesInput>;
 }
 
@@ -6542,11 +6542,11 @@ export class StateCreateWithoutCitiesInput {
 export class StateCreateWithoutCountryInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CityCreateNestedManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityCreateNestedManyWithoutStateInput>;
 }
 
@@ -6554,13 +6554,13 @@ export class StateCreateWithoutCountryInput {
 export class StateCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CountryCreateNestedOneWithoutStatesInput, {nullable:false})
+    @HideField()
     country!: InstanceType<typeof CountryCreateNestedOneWithoutStatesInput>;
-    @Field(() => CityCreateNestedManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityCreateNestedManyWithoutStateInput>;
 }
 
@@ -6598,9 +6598,9 @@ export class StateGroupBy {
     name!: string;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => StateCountAggregate, {nullable:true})
     _count?: InstanceType<typeof StateCountAggregate>;
@@ -6632,9 +6632,9 @@ export class StateMaxAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     countryId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -6646,9 +6646,9 @@ export class StateMaxAggregate {
     name?: string;
     @Field(() => Int, {nullable:true})
     countryId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -6660,9 +6660,9 @@ export class StateMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -6674,9 +6674,9 @@ export class StateMinAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     countryId?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -6688,9 +6688,9 @@ export class StateMinAggregate {
     name?: string;
     @Field(() => Int, {nullable:true})
     countryId?: number;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -6702,9 +6702,9 @@ export class StateMinOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -6722,9 +6722,9 @@ export class StateOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => StateCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof StateCountOrderByAggregateInput>;
@@ -6744,15 +6744,15 @@ export class StateOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
-    @Field(() => CountryOrderByWithRelationInput, {nullable:true})
+    @HideField()
     country?: InstanceType<typeof CountryOrderByWithRelationInput>;
     @Field(() => SortOrder, {nullable:true})
     countryId?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => CityOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityOrderByRelationAggregateInput>;
 }
 
@@ -6778,9 +6778,9 @@ export class StateScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     countryId?: InstanceType<typeof IntWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -6798,9 +6798,9 @@ export class StateScalarWhereInput {
     name?: InstanceType<typeof StringFilter>;
     @Field(() => IntFilter, {nullable:true})
     countryId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
 
@@ -6848,9 +6848,9 @@ export class StateUncheckedCreateWithoutCitiesInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -6860,11 +6860,11 @@ export class StateUncheckedCreateWithoutCountryInput {
     id?: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CityUncheckedCreateNestedManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutStateInput>;
 }
 
@@ -6876,11 +6876,11 @@ export class StateUncheckedCreateInput {
     name!: string;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => CityUncheckedCreateNestedManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUncheckedCreateNestedManyWithoutStateInput>;
 }
 
@@ -6916,9 +6916,9 @@ export class StateUncheckedUpdateManyWithoutStatesInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6930,9 +6930,9 @@ export class StateUncheckedUpdateManyInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6944,9 +6944,9 @@ export class StateUncheckedUpdateWithoutCitiesInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -6956,11 +6956,11 @@ export class StateUncheckedUpdateWithoutCountryInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUncheckedUpdateManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUncheckedUpdateManyWithoutStateInput>;
 }
 
@@ -6972,11 +6972,11 @@ export class StateUncheckedUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     countryId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUncheckedUpdateManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUncheckedUpdateManyWithoutStateInput>;
 }
 
@@ -6984,9 +6984,9 @@ export class StateUncheckedUpdateInput {
 export class StateUpdateManyMutationInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7050,11 +7050,11 @@ export class StateUpdateWithWhereUniqueWithoutCountryInput {
 export class StateUpdateWithoutCitiesInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CountryUpdateOneRequiredWithoutStatesInput, {nullable:true})
+    @HideField()
     country?: InstanceType<typeof CountryUpdateOneRequiredWithoutStatesInput>;
 }
 
@@ -7062,11 +7062,11 @@ export class StateUpdateWithoutCitiesInput {
 export class StateUpdateWithoutCountryInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CityUpdateManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUpdateManyWithoutStateInput>;
 }
 
@@ -7074,13 +7074,13 @@ export class StateUpdateWithoutCountryInput {
 export class StateUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => CountryUpdateOneRequiredWithoutStatesInput, {nullable:true})
+    @HideField()
     country?: InstanceType<typeof CountryUpdateOneRequiredWithoutStatesInput>;
-    @Field(() => CityUpdateManyWithoutStateInput, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityUpdateManyWithoutStateInput>;
 }
 
@@ -7120,15 +7120,15 @@ export class StateWhereInput {
     id?: InstanceType<typeof IntFilter>;
     @Field(() => StringFilter, {nullable:true})
     name?: InstanceType<typeof StringFilter>;
-    @Field(() => CountryRelationFilter, {nullable:true})
+    @HideField()
     country?: InstanceType<typeof CountryRelationFilter>;
     @Field(() => IntFilter, {nullable:true})
     countryId?: InstanceType<typeof IntFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => CityListRelationFilter, {nullable:true})
+    @HideField()
     cities?: InstanceType<typeof CityListRelationFilter>;
 }
 
@@ -7138,15 +7138,15 @@ export class State {
     id!: number;
     @Field(() => String, {nullable:false})
     name!: string;
-    @HideField()
+    @Field(() => Country, {nullable:false})
     country?: InstanceType<typeof Country>;
     @Field(() => Int, {nullable:false})
     countryId!: number;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [City], {nullable:true})
     cities?: Array<City>;
     @Field(() => StateCount, {nullable:false})
     _count?: InstanceType<typeof StateCount>;
@@ -7306,9 +7306,9 @@ export class TagCountAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     slug?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -7322,9 +7322,9 @@ export class TagCountAggregate {
     name!: number;
     @Field(() => Int, {nullable:false})
     slug!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -7338,9 +7338,9 @@ export class TagCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     slug?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -7358,9 +7358,9 @@ export class TagCreateManyInput {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -7388,9 +7388,9 @@ export class TagCreateWithoutReportsInput {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -7400,11 +7400,11 @@ export class TagCreateInput {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportCreateNestedManyWithoutTagsInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutTagsInput>;
 }
 
@@ -7442,9 +7442,9 @@ export class TagGroupBy {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => TagCountAggregate, {nullable:true})
     _count?: InstanceType<typeof TagCountAggregate>;
@@ -7476,9 +7476,9 @@ export class TagMaxAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     slug?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -7490,9 +7490,9 @@ export class TagMaxAggregate {
     name?: string;
     @Field(() => String, {nullable:true})
     slug?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -7504,9 +7504,9 @@ export class TagMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     slug?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -7518,9 +7518,9 @@ export class TagMinAggregateInput {
     name?: true;
     @Field(() => Boolean, {nullable:true})
     slug?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -7532,9 +7532,9 @@ export class TagMinAggregate {
     name?: string;
     @Field(() => String, {nullable:true})
     slug?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -7546,9 +7546,9 @@ export class TagMinOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     slug?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -7566,9 +7566,9 @@ export class TagOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     slug?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => TagCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof TagCountOrderByAggregateInput>;
@@ -7590,11 +7590,11 @@ export class TagOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     slug?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => ReportOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportOrderByRelationAggregateInput>;
 }
 
@@ -7612,9 +7612,9 @@ export class TagScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     slug?: InstanceType<typeof StringWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -7632,9 +7632,9 @@ export class TagScalarWhereInput {
     name?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     slug?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
 
@@ -7664,9 +7664,9 @@ export class TagUncheckedCreateWithoutReportsInput {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -7678,9 +7678,9 @@ export class TagUncheckedCreateInput {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -7692,9 +7692,9 @@ export class TagUncheckedUpdateManyWithoutTagsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7706,9 +7706,9 @@ export class TagUncheckedUpdateManyInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7720,9 +7720,9 @@ export class TagUncheckedUpdateWithoutReportsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7734,9 +7734,9 @@ export class TagUncheckedUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7746,9 +7746,9 @@ export class TagUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7798,9 +7798,9 @@ export class TagUpdateWithoutReportsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -7810,11 +7810,11 @@ export class TagUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     slug?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateManyWithoutTagsInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUpdateManyWithoutTagsInput>;
 }
 
@@ -7852,11 +7852,11 @@ export class TagWhereInput {
     name?: InstanceType<typeof StringFilter>;
     @Field(() => StringFilter, {nullable:true})
     slug?: InstanceType<typeof StringFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => ReportListRelationFilter, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportListRelationFilter>;
 }
 
@@ -7868,11 +7868,11 @@ export class Tag {
     name!: string;
     @Field(() => String, {nullable:false})
     slug!: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [Report], {nullable:true})
     reports?: Array<Report>;
     @Field(() => TagCount, {nullable:false})
     _count?: InstanceType<typeof TagCount>;
@@ -8060,9 +8060,9 @@ export class UserCountAggregateInput {
     email?: true;
     @Field(() => Boolean, {nullable:true})
     password?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
     @Field(() => Boolean, {nullable:true})
     _all?: true;
@@ -8078,9 +8078,9 @@ export class UserCountAggregate {
     email!: number;
     @Field(() => Int, {nullable:false})
     password!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
-    @HideField()
+    @Field(() => Int, {nullable:false})
     updatedAt!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
@@ -8096,9 +8096,9 @@ export class UserCountOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -8120,9 +8120,9 @@ export class UserCreateManyInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
 }
 
@@ -8170,11 +8170,11 @@ export class UserCreateWithoutReportsInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => SocialAccountCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountCreateNestedManyWithoutUserInput>;
 }
 
@@ -8186,11 +8186,11 @@ export class UserCreateWithoutSocialAccountInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutUserInput>;
 }
 
@@ -8202,13 +8202,13 @@ export class UserCreateInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => SocialAccountCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountCreateNestedManyWithoutUserInput>;
-    @Field(() => ReportCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportCreateNestedManyWithoutUserInput>;
 }
 
@@ -8248,9 +8248,9 @@ export class UserGroupBy {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date | string;
     @Field(() => UserCountAggregate, {nullable:true})
     _count?: InstanceType<typeof UserCountAggregate>;
@@ -8274,9 +8274,9 @@ export class UserMaxAggregateInput {
     email?: true;
     @Field(() => Boolean, {nullable:true})
     password?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -8290,9 +8290,9 @@ export class UserMaxAggregate {
     email?: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -8306,9 +8306,9 @@ export class UserMaxOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -8322,9 +8322,9 @@ export class UserMinAggregateInput {
     email?: true;
     @Field(() => Boolean, {nullable:true})
     password?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     createdAt?: true;
-    @Field(() => Boolean, {nullable:true})
+    @HideField()
     updatedAt?: true;
 }
 
@@ -8338,9 +8338,9 @@ export class UserMinAggregate {
     email?: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
-    @HideField()
+    @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 }
 
@@ -8354,9 +8354,9 @@ export class UserMinOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
 }
 
@@ -8370,9 +8370,9 @@ export class UserOrderByWithAggregationInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
     @Field(() => UserCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof UserCountOrderByAggregateInput>;
@@ -8396,13 +8396,13 @@ export class UserOrderByWithRelationInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     password?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     createdAt?: keyof typeof SortOrder;
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     updatedAt?: keyof typeof SortOrder;
-    @Field(() => SocialAccountOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountOrderByRelationAggregateInput>;
-    @Field(() => ReportOrderByRelationAggregateInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportOrderByRelationAggregateInput>;
 }
 
@@ -8430,9 +8430,9 @@ export class UserScalarWhereWithAggregatesInput {
     email?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     password?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
 
@@ -8464,11 +8464,11 @@ export class UserUncheckedCreateWithoutReportsInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => SocialAccountUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUncheckedCreateNestedManyWithoutUserInput>;
 }
 
@@ -8482,11 +8482,11 @@ export class UserUncheckedCreateWithoutSocialAccountInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => ReportUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutUserInput>;
 }
 
@@ -8500,13 +8500,13 @@ export class UserUncheckedCreateInput {
     email!: string;
     @Field(() => String, {nullable:true})
     password?: string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     createdAt?: Date | string;
-    @Field(() => Date, {nullable:true})
+    @HideField()
     updatedAt?: Date | string;
-    @Field(() => SocialAccountUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUncheckedCreateNestedManyWithoutUserInput>;
-    @Field(() => ReportUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedCreateNestedManyWithoutUserInput>;
 }
 
@@ -8520,9 +8520,9 @@ export class UserUncheckedUpdateManyInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -8536,11 +8536,11 @@ export class UserUncheckedUpdateWithoutReportsInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => SocialAccountUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUncheckedUpdateManyWithoutUserInput>;
 }
 
@@ -8554,11 +8554,11 @@ export class UserUncheckedUpdateWithoutSocialAccountInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedUpdateManyWithoutUserInput>;
 }
 
@@ -8572,13 +8572,13 @@ export class UserUncheckedUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => SocialAccountUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUncheckedUpdateManyWithoutUserInput>;
-    @Field(() => ReportUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUncheckedUpdateManyWithoutUserInput>;
 }
 
@@ -8590,9 +8590,9 @@ export class UserUpdateManyMutationInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 
@@ -8636,11 +8636,11 @@ export class UserUpdateWithoutReportsInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => SocialAccountUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUpdateManyWithoutUserInput>;
 }
 
@@ -8652,11 +8652,11 @@ export class UserUpdateWithoutSocialAccountInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => ReportUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUpdateManyWithoutUserInput>;
 }
 
@@ -8668,13 +8668,13 @@ export class UserUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    @Field(() => SocialAccountUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountUpdateManyWithoutUserInput>;
-    @Field(() => ReportUpdateManyWithoutUserInput, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportUpdateManyWithoutUserInput>;
 }
 
@@ -8720,13 +8720,13 @@ export class UserWhereInput {
     email?: InstanceType<typeof StringFilter>;
     @Field(() => StringNullableFilter, {nullable:true})
     password?: InstanceType<typeof StringNullableFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => DateTimeFilter, {nullable:true})
+    @HideField()
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    @Field(() => SocialAccountListRelationFilter, {nullable:true})
+    @HideField()
     SocialAccount?: InstanceType<typeof SocialAccountListRelationFilter>;
-    @Field(() => ReportListRelationFilter, {nullable:true})
+    @HideField()
     reports?: InstanceType<typeof ReportListRelationFilter>;
 }
 
@@ -8740,13 +8740,13 @@ export class User {
     email!: string;
     @Field(() => String, {nullable:true})
     password!: string | null;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     createdAt!: Date;
-    @HideField()
+    @Field(() => Date, {nullable:false})
     updatedAt!: Date;
-    @HideField()
+    @Field(() => [SocialAccount], {nullable:true})
     SocialAccount?: Array<SocialAccount>;
-    @HideField()
+    @Field(() => [Report], {nullable:true})
     reports?: Array<Report>;
     @Field(() => UserCount, {nullable:false})
     _count?: InstanceType<typeof UserCount>;

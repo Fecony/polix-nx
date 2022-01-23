@@ -2,9 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type City {
+  _count: CityCount!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  reports: [Report!]
+  state: State!
+  stateId: Int!
+  updatedAt: DateTime!
+}
+
 type CityAvgAggregate {
   id: Float
-  regionId: Float
+  stateId: Float
 }
 
 type CityCount {
@@ -13,26 +24,42 @@ type CityCount {
 
 type CityCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   name: Int!
-  regionId: Int!
+  stateId: Int!
+  updatedAt: Int!
 }
 
 type CityMaxAggregate {
+  createdAt: DateTime
   id: Int
   name: String
-  regionId: Int
+  stateId: Int
+  updatedAt: DateTime
 }
 
 type CityMinAggregate {
+  createdAt: DateTime
   id: Int
   name: String
-  regionId: Int
+  stateId: Int
+  updatedAt: DateTime
 }
 
 type CitySumAggregate {
   id: Int
-  regionId: Int
+  stateId: Int
+}
+
+type Country {
+  _count: CountryCount!
+  code: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  states: [State!]
+  updatedAt: DateTime!
 }
 
 type CountryAvgAggregate {
@@ -40,30 +67,61 @@ type CountryAvgAggregate {
 }
 
 type CountryCount {
-  region: Int!
+  states: Int!
 }
 
 type CountryCountAggregate {
   _all: Int!
   code: Int!
+  createdAt: Int!
   id: Int!
   name: Int!
+  updatedAt: Int!
+}
+
+input CountryCreateInput {
+  code: String!
+  name: String!
 }
 
 type CountryMaxAggregate {
   code: String
+  createdAt: DateTime
   id: Int
   name: String
+  updatedAt: DateTime
 }
 
 type CountryMinAggregate {
   code: String
+  createdAt: DateTime
   id: Int
   name: String
+  updatedAt: DateTime
 }
 
 type CountrySumAggregate {
   id: Int
+}
+
+input CountryUpdateInput {
+  code: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Media {
+  _count: MediaCount!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  path: String!
+  reportMedia: [ReportMedia!]
+  updatedAt: DateTime!
 }
 
 type MediaAvgAggregate {
@@ -76,62 +134,58 @@ type MediaCount {
 
 type MediaCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   name: Int!
   path: Int!
+  updatedAt: Int!
 }
 
 type MediaMaxAggregate {
+  createdAt: DateTime
   id: Int
   name: String
   path: String
+  updatedAt: DateTime
 }
 
 type MediaMinAggregate {
+  createdAt: DateTime
   id: Int
   name: String
   path: String
+  updatedAt: DateTime
 }
 
 type MediaSumAggregate {
   id: Int
 }
 
+type Mutation {
+  createCountry(createCountryInput: CountryCreateInput!): Country!
+  removeCountry(id: Int!): Country!
+  updateCountry(id: Int!, updateCountryInput: CountryUpdateInput!): Country!
+}
+
 type Query {
+  countries: [Country!]!
+  country(id: Int!): Country!
   ping: String!
 }
 
-type RegionAvgAggregate {
-  countryId: Float
-  id: Float
-}
-
-type RegionCount {
-  city: Int!
-}
-
-type RegionCountAggregate {
-  _all: Int!
-  countryId: Int!
-  id: Int!
-  name: Int!
-}
-
-type RegionMaxAggregate {
-  countryId: Int
-  id: Int
-  name: String
-}
-
-type RegionMinAggregate {
-  countryId: Int
-  id: Int
-  name: String
-}
-
-type RegionSumAggregate {
-  countryId: Int
-  id: Int
+type Report {
+  _count: ReportCount!
+  city: City
+  cityId: Int
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  media: [ReportMedia!]
+  tags: [Tag!]
+  title: String!
+  updatedAt: DateTime!
+  user: User
+  userId: Int
 }
 
 type ReportAvgAggregate {
@@ -149,17 +203,31 @@ type ReportCountAggregate {
   _all: Int!
   cityId: Int!
   content: Int!
+  createdAt: Int!
   id: Int!
   title: Int!
+  updatedAt: Int!
   userId: Int!
 }
 
 type ReportMaxAggregate {
   cityId: Int
   content: String
+  createdAt: DateTime
   id: Int
   title: String
+  updatedAt: DateTime
   userId: Int
+}
+
+type ReportMedia {
+  createdAt: DateTime!
+  id: ID!
+  media: Media!
+  mediaId: Int!
+  report: Report!
+  reportId: Int!
+  updatedAt: DateTime!
 }
 
 type ReportMediaAvgAggregate {
@@ -170,21 +238,27 @@ type ReportMediaAvgAggregate {
 
 type ReportMediaCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   mediaId: Int!
   reportId: Int!
+  updatedAt: Int!
 }
 
 type ReportMediaMaxAggregate {
+  createdAt: DateTime
   id: Int
   mediaId: Int
   reportId: Int
+  updatedAt: DateTime
 }
 
 type ReportMediaMinAggregate {
+  createdAt: DateTime
   id: Int
   mediaId: Int
   reportId: Int
+  updatedAt: DateTime
 }
 
 type ReportMediaSumAggregate {
@@ -196,8 +270,10 @@ type ReportMediaSumAggregate {
 type ReportMinAggregate {
   cityId: Int
   content: String
+  createdAt: DateTime
   id: Int
   title: String
+  updatedAt: DateTime
   userId: Int
 }
 
@@ -205,6 +281,16 @@ type ReportSumAggregate {
   cityId: Int
   id: Int
   userId: Int
+}
+
+type SocialAccount {
+  createdAt: DateTime!
+  id: ID!
+  provider: String!
+  providerId: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
 }
 
 type SocialAccountAvgAggregate {
@@ -215,23 +301,29 @@ type SocialAccountAvgAggregate {
 
 type SocialAccountCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   provider: Int!
   providerId: Int!
+  updatedAt: Int!
   userId: Int!
 }
 
 type SocialAccountMaxAggregate {
+  createdAt: DateTime
   id: Int
   provider: String
   providerId: String
+  updatedAt: DateTime
   userId: Int
 }
 
 type SocialAccountMinAggregate {
+  createdAt: DateTime
   id: Int
   provider: String
   providerId: String
+  updatedAt: DateTime
   userId: Int
 }
 
@@ -239,6 +331,70 @@ type SocialAccountSumAggregate {
   id: Int
   provider: String
   userId: Int
+}
+
+type State {
+  _count: StateCount!
+  cities: [City!]
+  country: Country!
+  countryId: Int!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type StateAvgAggregate {
+  countryId: Float
+  id: Float
+}
+
+type StateCount {
+  cities: Int!
+}
+
+type StateCountAggregate {
+  _all: Int!
+  countryId: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+}
+
+type StateMaxAggregate {
+  countryId: Int
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+type StateMinAggregate {
+  countryId: Int
+  createdAt: DateTime
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+type StateSumAggregate {
+  countryId: Int
+  id: Int
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+type Tag {
+  _count: TagCount!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  reports: [Report!]
+  slug: String!
+  updatedAt: DateTime!
 }
 
 type TagAvgAggregate {
@@ -251,25 +407,43 @@ type TagCount {
 
 type TagCountAggregate {
   _all: Int!
+  createdAt: Int!
   id: Int!
   name: Int!
   slug: Int!
+  updatedAt: Int!
 }
 
 type TagMaxAggregate {
+  createdAt: DateTime
   id: Int
   name: String
   slug: String
+  updatedAt: DateTime
 }
 
 type TagMinAggregate {
+  createdAt: DateTime
   id: Int
   name: String
   slug: String
+  updatedAt: DateTime
 }
 
 type TagSumAggregate {
   id: Int
+}
+
+type User {
+  SocialAccount: [SocialAccount!]
+  _count: UserCount!
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  password: String
+  reports: [Report!]
+  updatedAt: DateTime!
+  username: String
 }
 
 type UserAvgAggregate {
@@ -283,23 +457,29 @@ type UserCount {
 
 type UserCountAggregate {
   _all: Int!
+  createdAt: Int!
   email: Int!
   id: Int!
   password: Int!
+  updatedAt: Int!
   username: Int!
 }
 
 type UserMaxAggregate {
+  createdAt: DateTime
   email: String
   id: Int
   password: String
+  updatedAt: DateTime
   username: String
 }
 
 type UserMinAggregate {
+  createdAt: DateTime
   email: String
   id: Int
   password: String
+  updatedAt: DateTime
   username: String
 }
 

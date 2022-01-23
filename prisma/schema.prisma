@@ -24,13 +24,13 @@ model User {
   username      String?         @unique
   email         String          @unique
   password      String?
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt     DateTime        @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt     DateTime        @updatedAt
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   SocialAccount SocialAccount[]
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   reports       Report[]
 
   @@map("users")
@@ -40,12 +40,12 @@ model SocialAccount {
   id         Int      @id @default(autoincrement())
   provider   BigInt
   providerId String
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId     Int
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt  DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt  DateTime @updatedAt
 
   @@map("social_accounts")
@@ -55,12 +55,12 @@ model Country {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   code      String   @unique
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   states State[]
   @@map("countries")
 }
@@ -68,15 +68,15 @@ model Country {
 model State {
   id        Int      @id @default(autoincrement())
   name      String
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   country   Country  @relation(fields: [countryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   countryId Int
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   cities City[]
   @@map("states")
 }
@@ -84,15 +84,15 @@ model State {
 model City {
   id        Int      @id @default(autoincrement())
   name      String
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   state     State    @relation(fields: [stateId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   stateId   Int
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   reports Report[]
   @@map("cities")
 }
@@ -101,12 +101,12 @@ model Tag {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   slug      String   @unique
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   reports Report[]
   @@map("tags")
 }
@@ -115,22 +115,22 @@ model Report {
   id        Int      @id @default(autoincrement())
   title     String
   content   String   @db.Text
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
   location Unsupported("Point")?
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   user     User?                 @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: SetNull)
   userId   Int?
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   city     City?                 @relation(fields: [cityId], references: [id], onDelete: SetNull, onUpdate: SetNull)
   cityId   Int?
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   tags  Tag[]
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   media ReportMedia[]
   @@map("reports")
 }
@@ -139,27 +139,27 @@ model Media {
   id        Int      @id @default(autoincrement())
   path      String
   name      String
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   reportMedia ReportMedia[]
   @@map("media")
 }
 
 model ReportMedia {
   id        Int      @id @default(autoincrement())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   createdAt DateTime @default(now())
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   updatedAt DateTime @updatedAt
 
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   report   Report @relation(fields: [reportId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   reportId Int
-  /// @HideField()
+  /// @HideField({ input: true, output: false })
   media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   mediaId  Int
 
