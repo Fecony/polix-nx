@@ -1,8 +1,8 @@
 # Polix Nx❌
 
+<!-- 
 > Independence, for me, is being able to go about my day, get to wherever I need to be and do whatever I need to do, without needing to spend extra money or ask strangers to help me. In an inaccessible city, my disability becomes the centre of everything. But when barriers are taken away I don’t have to think about it – I can just be me. Eleanor, London - [source](https://www.theguardian.com/cities/2017/sep/22/second-class-citizen-readers-navigating-cities-disability)
-
----
+-->
 
 This project was generated using [Nx](https://nx.dev).
 
